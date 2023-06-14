@@ -1,7 +1,7 @@
-# Личный проект «{{projectTitle}}»
+# Личный проект «Keksobooking»
 
-* Студент: [{{userName}}]({{userProfile}}).
-* Наставник: `Неизвестно`.
+- Студент: [Потапов Сергей](https://htmlacademy.ru/profile/id1224279)
+<!-- - Наставник: [Юрий Белобородов](https://htmlacademy.ru/profile/id514591) -->
 
 ---
 
