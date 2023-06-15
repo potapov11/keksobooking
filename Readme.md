@@ -1,9 +1,7 @@
 # Личный проект «Keksobooking»
 
 - Студент: [Потапов Сергей](https://htmlacademy.ru/profile/id1224279)
-<!-- - Наставник: [Юрий Белобородов](https://htmlacademy.ru/profile/id514591) -->
-
----
+- Наставник: [Семён Якушев](https://htmlacademy.ru/profile/id1118791)
 
 _Не удаляйте и не изменяйте самовольно файлы и папки:_
 _`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.json`, `package.json`., `.github`_
