@@ -17,19 +17,34 @@ console.log(checkPalindrome('Шалаш'));
 
 //'return positive numbers';
 
+// function returnNumbers(string) {
+//   let number = string.split(' ').map(item => parseInt(item)).filter(item => !isNaN(item));
+//   let [outputNumber] = number;
+//   if(!outputNumber) {
+//     return NaN;
+//   } else {
+//     return Math.abs(outputNumber);
+//   }
+// }
+
 function returnNumbers(string) {
-  let number = string.split(' ').map(item => parseInt(item)).filter(item => !isNaN(item));
-  let [outputNumber] = number;
-  if(!outputNumber) {
-    return NaN;
-  } else {
-    return Math.abs(outputNumber);
+  let numbers = '';
+  for(let i in string) {
+    let num = parseInt(string[i]);
+    if(!Number.isNaN(num)) {
+      numbers += num;
+    }
   }
+  if(numbers.length === 0) {
+      return NaN;
+    }
+  return numbers;
 }
 
 console.log(returnNumbers('2023 год'));            // 2023
 console.log(returnNumbers('ECMAScript 2022'));     // 2022
 console.log(returnNumbers('агент 007'));           // 7
+console.log(returnNumbers('1 кефир, 0.5 батона')); // 105
 console.log(returnNumbers('-7'));                  // 7
 console.log(returnNumbers('а я томат'));           // NaN
 
