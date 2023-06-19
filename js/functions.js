@@ -14,18 +14,7 @@ console.log(checkPalindrome('А роза упала на лапу Азора'));
 console.log(checkPalindrome('Сегодня жарко'));
 console.log(checkPalindrome('Шалаш'));
 
-
-//'return positive numbers';
-
-// function returnNumbers(string) {
-//   let number = string.split(' ').map(item => parseInt(item)).filter(item => !isNaN(item));
-//   let [outputNumber] = number;
-//   if(!outputNumber) {
-//     return NaN;
-//   } else {
-//     return Math.abs(outputNumber);
-//   }
-// }
+//return number function
 
 function returnNumbers(string) {
   let numbers = '';
@@ -47,6 +36,29 @@ console.log(returnNumbers('агент 007'));           // 7
 console.log(returnNumbers('1 кефир, 0.5 батона')); // 105
 console.log(returnNumbers('-7'));                  // 7
 console.log(returnNumbers('а я томат'));           // NaN
+
+
+//return string
+
+function addChars(str, minLength, charsToAdd) {
+  console.log(str.length, minLength, charsToAdd.length);
+  if (str.length >= minLength) {
+    return str;
+  }
+  let string = str;
+  while (string.length < minLength) {
+    string = charsToAdd + string;
+    console.log(string);
+    console.log(string.length);
+  }
+  return string;
+}
+
+console.log(addChars('q', 4, 'werty'));
+
+// console.log(addChars('пр', 8, 'р'));
+console.log(addChars('при', 8, 'р'));
+console.log(addChars('q', 4, 'werty'));
 
 //'create random number'
 
