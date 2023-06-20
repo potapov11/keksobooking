@@ -3,11 +3,7 @@
 function checkPalindrome(string) {
   const newString = string.toLowerCase().replaceAll(' ', '').split('').reverse().join('');
   string = string.toLowerCase().replaceAll(' ', '');
-  if(string === newString) {
-    return 'isPalindrome';
-  } else {
-    return 'isNotPalindrome';
-  }
+  return string === newString;
 }
 
 console.log(checkPalindrome('А роза упала на лапу Азора'));
@@ -27,50 +23,46 @@ function returnNumbers(string) {
   if(numbers.length === 0) {
       return NaN;
     }
+  numbers = parseInt(numbers);
   return numbers;
 }
 
+console.log(returnNumbers('агент 007'));           // 7
 console.log(returnNumbers('2023 год'));            // 2023
 console.log(returnNumbers('ECMAScript 2022'));     // 2022
-console.log(returnNumbers('агент 007'));           // 7
 console.log(returnNumbers('1 кефир, 0.5 батона')); // 105
 console.log(returnNumbers('-7'));                  // 7
 console.log(returnNumbers('а я томат'));           // NaN
 
 
-//return string
+// function addChars
 
 function addChars(str, minLength, charsToAdd) {
-  console.log(str.length, minLength, charsToAdd.length);
   if (str.length >= minLength) {
     return str;
   }
   let string = str;
-  while (string.length < minLength) {
-    string = charsToAdd + string;
-    console.log(string);
-    console.log(string.length);
+  while (charsToAdd.length + str.length > minLength) {
+    charsToAdd = charsToAdd.slice(0, -1);
   }
-  return string;
+  while (string.length < minLength) {
+    console.log(charsToAdd.slice(0,minLength-string.length));
+     string = charsToAdd.slice(0,minLength-string.length) + string;
+    }
+
+    return string;
 }
-
+console.log(addChars('q', 4, 'we')); //wweq
 console.log(addChars('q', 4, 'werty'));
+console.log(addChars('q', 4, 'wertjhhjk'));
+console.log(addChars('q', 4, 'jhhjk'));
 
-// console.log(addChars('пр', 8, 'р'));
-console.log(addChars('при', 8, 'р'));
-console.log(addChars('q', 4, 'werty'));
-
-//'create random number'
+//create random number
 
 function randomNumber(min, max, quantity) {
   let num = (Math.random() * (max - min + 1)) + min;
-  console.log(num);
-  const string = num.toString();
-  const index = string.indexOf('.') + 1;
-  num = string.slice(index , quantity + index);
-  return num;
+  return num = num.toFixed(quantity);
 }
-
 
 console.log(randomNumber(1, 10, 5));
 console.log(randomNumber(1, 6, 3));
