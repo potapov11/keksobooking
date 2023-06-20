@@ -1,6 +1,2 @@
 node_modules
-
-{
-  "liveServer.settings.port": 5501
-}
-js/tempCodeRunnerFile.js
+.vscode

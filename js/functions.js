@@ -42,15 +42,10 @@ function addChars(str, minLength, charsToAdd) {
     return str;
   }
   let string = str;
-  while (charsToAdd.length + str.length > minLength) {
-    charsToAdd = charsToAdd.slice(0, -1);
-  }
   while (string.length < minLength) {
-    console.log(charsToAdd.slice(0,minLength-string.length));
      string = charsToAdd.slice(0,minLength-string.length) + string;
-    }
-
-    return string;
+  }
+  return string;
 }
 console.log(addChars('q', 4, 'we')); //wweq
 console.log(addChars('q', 4, 'werty'));
