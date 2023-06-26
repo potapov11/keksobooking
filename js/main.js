@@ -31,8 +31,6 @@ const randomNumberLatLng = (min, max) => {
 	return parseFloat(res);
 };
 
-console.log(randomNumberLatLng(lngMin, lngMax));
-
 const randomArrayValue = (array) => {
 	const randomValue = randomNumber(0, array.length - 1);
 	return array[randomValue];
@@ -80,6 +78,4 @@ const createObject = () => ({
 	},
 });
 
-const resArr = Array.from({ length: 10 }, createObject);
-console.log(resArr);
-console.log(createObject());
+const resObjectsArr = Array.from({ length: 10 }, createObject);
