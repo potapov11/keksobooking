@@ -8,10 +8,10 @@ const houseFeatures = [
 	"elevator",
 	"conditioner",
 ];
-const latMin = 35.65;
-const latMax = 35.7;
-// const lngMin = 139.7;
-// const lngMax = 139.8;
+const LAT_MIN = 35.65;
+const LAT_MAX = 35.7;
+const LNG_MIN = 139.7; //
+const LNG_MAX = 139.8;
 const checkInOutData = ["12:00", "13:00", "14:00"];
 const photos = [
 	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg",
@@ -23,8 +23,6 @@ const randomNumber = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const lngMin = 139.7;
-const lngMax = 139.8;
 const randomNumberLatLng = (min, max) => {
 	let res = Math.random() * (max - min) + min;
 	res = res.toFixed(5);
@@ -73,7 +71,7 @@ const createObject = () => ({
 		photos: randomNoRepeatArrayValue(photos),
 	},
 	location: {
-		lat: randomNumberLatLng(latMin, latMax),
+		lat: randomNumberLatLng(LAT_MIN, LAT_MAX),
 		lng: randomNumberLatLng(lngMin, lngMax),
 	},
 });
