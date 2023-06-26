@@ -8,25 +8,43 @@ const houseFeatures = [
 	"elevator",
 	"conditioner",
 ];
+const latMin = 35.65;
+const latMax = 35.7;
+// const lngMin = 139.7;
+// const lngMax = 139.8;
 const checkInOutData = ["12:00", "13:00", "14:00"];
+const photos = [
+	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg",
+	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg",
+	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg",
+];
 
 const randomNumber = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+const lngMin = 139.7;
+const lngMax = 139.8;
+const randomNumberLatLng = (min, max) => {
+	let res = Math.random() * (max - min) + min;
+	res = res.toFixed(5);
+	return parseFloat(res);
+};
+
+console.log(randomNumberLatLng(lngMin, lngMax));
 
 const randomArrayValue = (array) => {
 	const randomValue = randomNumber(0, array.length - 1);
 	return array[randomValue];
 };
 
-const randomFeaturesValue = (array) => {
+const randomNoRepeatArrayValue = (array) => {
 	const randomFeaturesNumber = randomNumber(0, array.length - 1);
-	let updatedFeaturesArray = [];
+	let updatedArray = [];
 	for (let i = randomFeaturesNumber; i >= 0; i--) {
-		updatedFeaturesArray.push(array[i]);
+		updatedArray.push(array[i]);
 	}
-	console.log(updatedFeaturesArray);
-	return updatedFeaturesArray;
+	return updatedArray;
 };
 
 const RandomArrNumber = () => {
@@ -52,7 +70,13 @@ const createObject = () => ({
 		guests: randomNumber(0, 6),
 		checkin: randomArrayValue(checkInOutData),
 		checkout: randomArrayValue(checkInOutData),
-		features: randomFeaturesValue(houseFeatures),
+		features: randomNoRepeatArrayValue(houseFeatures),
+		description: "Произвольный текст",
+		photos: randomNoRepeatArrayValue(photos),
+	},
+	location: {
+		lat: randomNumberLatLng(latMin, latMax),
+		lng: randomNumberLatLng(lngMin, lngMax),
 	},
 });
 
