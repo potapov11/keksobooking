@@ -1,6 +1,10 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const typeHousings = ["palace", "flat", "house", "bungalow", "hotel"];
-const titles = ["произвольный заголовок", "Произвольный текст", "Lorem	ipsum"];
+const randomText = [
+	"произвольный заголовок",
+	"Произвольный текст",
+	"Lorem ipsum",
+];
 const houseFeatures = [
 	"wifi",
 	"dishwasher",
@@ -20,14 +24,14 @@ const photos = [
 	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg",
 ];
 
-const getRandomNumber = (min, max) => {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-const getRandomNumberLatLng = (min, max) => {
-	let res = Math.random() * (max - min) + min;
-	res = res.toFixed(5);
-	return parseFloat(res);
+const getRandomNumber = (min, max, floatingNumber) => {
+	if (floatingNumber) {
+		let res = Math.random() * (max - min) + min;
+		res = res.toFixed(5);
+		return parseFloat(res);
+	} else {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 };
 
 const getRandomArrayValue = (array) => {
@@ -37,11 +41,7 @@ const getRandomArrayValue = (array) => {
 
 const getNoRepeatArrayValue = (array) => {
 	const randomFeaturesNumber = getRandomNumber(0, array.length - 1);
-	let updatedArray = [];
-	for (let i = randomFeaturesNumber; i >= 0; i--) {
-		updatedArray.push(array[i]);
-	}
-	return updatedArray;
+	return array.slice(0, randomFeaturesNumber);
 };
 
 const getRandomArrNumber = () => {
@@ -59,24 +59,24 @@ const createObject = () => ({
 		avatar: `img/avatars/user${getRandomArrNumber()}.png`,
 	},
 	offer: {
-		title: getNoRepeatArrayValue(titles),
+		title: getRandomArrayValue(randomText),
 		address:
-			`${getRandomNumberLatLng(LAT_MIN, LAT_MAX)}` +
+			`${getRandomNumber(LAT_MIN, LAT_MAX, true)}` +
 			" " +
-			`${getRandomNumberLatLng(LNG_MIN, LNG_MAX)}`,
+			`${getRandomNumber(LNG_MIN, LNG_MAX, true)}`,
 		price: getRandomNumber(0, 100),
 		type: getRandomArrayValue(typeHousings),
-		rooms: getRandomNumber(0, 5),
+		rooms: getRandomNumber(1, 5),
 		guests: getRandomNumber(0, 6),
 		checkin: getRandomArrayValue(checkInOutData),
 		checkout: getRandomArrayValue(checkInOutData),
 		features: getNoRepeatArrayValue(houseFeatures),
-		description: "Произвольный текст",
+		description: getRandomArrayValue(randomText),
 		photos: getNoRepeatArrayValue(photos),
 	},
 	location: {
-		lat: getRandomNumberLatLng(LAT_MIN, LAT_MAX),
-		lng: getRandomNumberLatLng(LNG_MIN, LNG_MAX),
+		lat: getRandomNumber(LAT_MIN, LAT_MAX, true),
+		lng: getRandomNumber(LNG_MIN, LNG_MAX, true),
 	},
 });
 
