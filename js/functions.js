@@ -60,7 +60,7 @@ console.log(addChars("q", 4, "jhhjk"));
 
 function randomNumber(min, max, quantity) {
 	let num = Math.random() * (max - min + 1) + min;
-	return (num = num.toFixed(quantity));
+	return +num.toFixed(quantity);
 }
 
 console.log(randomNumber(1, 10, 5));

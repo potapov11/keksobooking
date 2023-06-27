@@ -1,5 +1,6 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const typeHousings = ["palace", "flat", "house", "bungalow", "hotel"];
+const titles = ["произвольный заголовок", "Произвольный текст", "Lorem	ipsum"];
 const houseFeatures = [
 	"wifi",
 	"dishwasher",
@@ -19,23 +20,23 @@ const photos = [
 	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg",
 ];
 
-const randomNumber = (min, max) => {
+const getRandomNumber = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const randomNumberLatLng = (min, max) => {
+const getRandomNumberLatLng = (min, max) => {
 	let res = Math.random() * (max - min) + min;
 	res = res.toFixed(5);
 	return parseFloat(res);
 };
 
-const randomArrayValue = (array) => {
-	const randomValue = randomNumber(0, array.length - 1);
+const getRandomArrayValue = (array) => {
+	const randomValue = getRandomNumber(0, array.length - 1);
 	return array[randomValue];
 };
 
-const randomNoRepeatArrayValue = (array) => {
-	const randomFeaturesNumber = randomNumber(0, array.length - 1);
+const getNoRepeatArrayValue = (array) => {
+	const randomFeaturesNumber = getRandomNumber(0, array.length - 1);
 	let updatedArray = [];
 	for (let i = randomFeaturesNumber; i >= 0; i--) {
 		updatedArray.push(array[i]);
@@ -43,8 +44,8 @@ const randomNoRepeatArrayValue = (array) => {
 	return updatedArray;
 };
 
-const RandomArrNumber = () => {
-	let randomNum = randomNumber(0, numbers.length - 1);
+const getRandomArrNumber = () => {
+	let randomNum = getRandomNumber(0, numbers.length - 1);
 	let randomNumberValue = numbers[randomNum];
 	if (randomNumberValue < 10) {
 		randomNum = "0" + randomNumberValue;
@@ -55,25 +56,29 @@ const RandomArrNumber = () => {
 
 const createObject = () => ({
 	autor: {
-		avatar: `img/avatars/user${RandomArrNumber()}.png`,
+		avatar: `img/avatars/user${getRandomArrNumber()}.png`,
 	},
 	offer: {
-		title: "Произвольный текст",
-		address: "Произвольный текст",
-		price: randomNumber(0, 100),
-		type: randomArrayValue(typeHousings),
-		rooms: randomNumber(0, 5),
-		guests: randomNumber(0, 6),
-		checkin: randomArrayValue(checkInOutData),
-		checkout: randomArrayValue(checkInOutData),
-		features: randomNoRepeatArrayValue(houseFeatures),
+		title: getNoRepeatArrayValue(titles),
+		address:
+			`${getRandomNumberLatLng(LAT_MIN, LAT_MAX)}` +
+			" " +
+			`${getRandomNumberLatLng(LNG_MIN, LNG_MAX)}`,
+		price: getRandomNumber(0, 100),
+		type: getRandomArrayValue(typeHousings),
+		rooms: getRandomNumber(0, 5),
+		guests: getRandomNumber(0, 6),
+		checkin: getRandomArrayValue(checkInOutData),
+		checkout: getRandomArrayValue(checkInOutData),
+		features: getNoRepeatArrayValue(houseFeatures),
 		description: "Произвольный текст",
-		photos: randomNoRepeatArrayValue(photos),
+		photos: getNoRepeatArrayValue(photos),
 	},
 	location: {
-		lat: randomNumberLatLng(LAT_MIN, LAT_MAX),
-		lng: randomNumberLatLng(lngMin, lngMax),
+		lat: getRandomNumberLatLng(LAT_MIN, LAT_MAX),
+		lng: getRandomNumberLatLng(LNG_MIN, LNG_MAX),
 	},
 });
 
 const resObjectsArr = Array.from({ length: 10 }, createObject);
+console.log(resObjectsArr);
