@@ -34,6 +34,8 @@ const getRandomNumber = (min, max, floatingNumber) => {
 	}
 };
 
+getRandomNumber(LAT_MIN, LAT_MAX, true);
+
 const getRandomArrayValue = (array) => {
 	const randomValue = getRandomNumber(0, array.length - 1);
 	return array[randomValue];
@@ -54,31 +56,33 @@ const getRandomArrNumber = () => {
 	return randomNumberValue;
 };
 
-const createObject = () => ({
-	autor: {
-		avatar: `img/avatars/user${getRandomArrNumber()}.png`,
-	},
-	offer: {
-		title: getRandomArrayValue(randomText),
-		address:
-			`${getRandomNumber(LAT_MIN, LAT_MAX, true)}` +
-			" " +
-			`${getRandomNumber(LNG_MIN, LNG_MAX, true)}`,
-		price: getRandomNumber(0, 100),
-		type: getRandomArrayValue(typeHousings),
-		rooms: getRandomNumber(1, 5),
-		guests: getRandomNumber(0, 6),
-		checkin: getRandomArrayValue(checkInOutData),
-		checkout: getRandomArrayValue(checkInOutData),
-		features: getNoRepeatArrayValue(houseFeatures),
-		description: getRandomArrayValue(randomText),
-		photos: getNoRepeatArrayValue(photos),
-	},
-	location: {
-		lat: getRandomNumber(LAT_MIN, LAT_MAX, true),
-		lng: getRandomNumber(LNG_MIN, LNG_MAX, true),
-	},
-});
+const createObject = () => {
+	const objOneRandomFloatNumber = getRandomNumber(LAT_MIN, LAT_MAX, true);
+	const objTwoRandomFloatNumber = getRandomNumber(LAT_MIN, LAT_MAX, true);
+
+	return {
+		autor: {
+			avatar: `img/avatars/user${getRandomArrNumber()}.png`,
+		},
+		offer: {
+			title: getRandomArrayValue(randomText),
+			address: `${objOneRandomFloatNumber}  ${objTwoRandomFloatNumber}`,
+			price: getRandomNumber(0, 100),
+			type: getRandomArrayValue(typeHousings),
+			rooms: getRandomNumber(1, 5),
+			guests: getRandomNumber(0, 6),
+			checkin: getRandomArrayValue(checkInOutData),
+			checkout: getRandomArrayValue(checkInOutData),
+			features: getNoRepeatArrayValue(houseFeatures),
+			description: getRandomArrayValue(randomText),
+			photos: getNoRepeatArrayValue(photos),
+		},
+		location: {
+			lat: objOneRandomFloatNumber,
+			lng: objTwoRandomFloatNumber,
+		},
+	};
+};
 
 const resObjectsArr = Array.from({ length: 10 }, createObject);
 console.log(resObjectsArr);
