@@ -12,6 +12,7 @@ const randomText = [
 	"Произвольный текст",
 	"Lorem ipsum",
 ];
+
 const houseFeatures = [
 	"wifi",
 	"dishwasher",
@@ -26,8 +27,8 @@ const LNG_MIN = 139.7; //
 const LNG_MAX = 139.8;
 const checkInOutData = ["12:00", "13:00", "14:00"];
 const photos = [
-	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg",
 	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg",
+	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg",
 	"https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg",
 ];
 

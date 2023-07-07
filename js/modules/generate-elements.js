@@ -9,8 +9,6 @@ const createElements = () => {
 		.querySelector("#card")
 		.content.querySelector(".popup");
 
-	console.log(cardTemplate);
-
 	resObjectsArr.forEach((object, i) => {
 		const objectElement = cardTemplate.cloneNode(true);
 		objectElement.querySelector(".popup__title").textContent =
@@ -30,14 +28,35 @@ const createElements = () => {
 			object.offer.features;
 		objectElement.querySelector(".popup__description").textContent =
 			object.offer.description;
-		objectElement
-			.querySelector(".popup__photos")
-			.querySelector(".popup__photo").src = object.offer.photos;
-		console.log(object.offer.photos + `   ${i}`);
+		objectElement.querySelector(".popup__avatar").textContent =
+			object.autor.avatar;
 
-		console.log(objectElement);
-		mapCanvas.appendChild(objectElement);
+		const photoList = objectElement.querySelector(".popup__photos");
+		const photos = object.offer.photos;
+		photoList.innerHTML = "";
+
+		for (let i = 0; i < photos.length; i++) {
+			photoList.innerHTML += `
+			<img src=${photos[i]} class="popup__photo" width="45" height="40" alt="Фотография жилья"/>
+			`;
+		}
+
+		const objectFragment = document.createDocumentFragment();
+		objectFragment.appendChild(objectElement);
+		mapCanvas.appendChild(objectFragment);
 		mapCanvas.style.display = "flex";
+
+		const popupElement = document.querySelector(".popup");
+
+		const elements = popupElement.querySelectorAll("*");
+		elements.forEach((element) => {
+			const data = element.textContent || element.getAttribute("src");
+			if (data === "") {
+				element.remove();
+			}
+		});
+
+		const popup = document.querySelector(".popup");
 	});
 };
 

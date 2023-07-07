@@ -14,7 +14,7 @@ const getRandomArrayValue = (array) => {
 };
 
 const getNoRepeatArrayValue = (array) => {
-	const randomFeaturesNumber = getRandomNumber(0, array.length - 1);
+	const randomFeaturesNumber = getRandomNumber(1, array.length - 1);
 	return array.slice(0, randomFeaturesNumber);
 };
 
