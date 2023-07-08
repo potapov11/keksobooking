@@ -32,13 +32,15 @@ const createElements = () => {
 			object.autor.avatar;
 
 		const photoList = objectElement.querySelector(".popup__photos");
+		console.log(photoList);
 		const photos = object.offer.photos;
-		photoList.innerHTML = "";
+		const img = photoList.querySelector("img");
 
+		photoList.innerHTML = "";
 		for (let i = 0; i < photos.length; i++) {
-			photoList.innerHTML += `
-			<img src=${photos[i]} class="popup__photo" width="45" height="40" alt="Фотография жилья"/>
-			`;
+			let newImg = img.cloneNode(true);
+			newImg.src = photos[i];
+			photoList.append(newImg);
 		}
 
 		const objectFragment = document.createDocumentFragment();
@@ -55,8 +57,6 @@ const createElements = () => {
 				element.remove();
 			}
 		});
-
-		const popup = document.querySelector(".popup");
 	});
 };
 

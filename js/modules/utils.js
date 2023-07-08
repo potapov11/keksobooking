@@ -14,12 +14,12 @@ const getRandomArrayValue = (array) => {
 };
 
 const getNoRepeatArrayValue = (array) => {
-	const randomFeaturesNumber = getRandomNumber(1, array.length - 1);
+	const randomFeaturesNumber = getRandomNumber(1, array.length);
 	return array.slice(0, randomFeaturesNumber);
 };
 
 const getRandomArrNumber = (array) => {
-	let randomNum = getRandomNumber(0, array.length - 1);
+	let randomNum = getRandomNumber(1, array.length - 1);
 	let randomNumberValue = array[randomNum];
 	if (randomNumberValue < 10) {
 		randomNum = "0" + randomNumberValue;
