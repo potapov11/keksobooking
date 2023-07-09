@@ -1,5 +1,5 @@
 import { createObject } from "./modules/create-object.js";
-import { createElements } from "./modules/generate-elements.js";
+import { renderInfoBlock } from "./modules/render-Info-block.js";
 
-const resObjectsArr = Array.from({ length: 10 }, createObject);
-createElements();
+const resObjectsArr = Array.from({ length: 1 }, createObject);
+renderInfoBlock(resObjectsArr);
