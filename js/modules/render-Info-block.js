@@ -1,7 +1,7 @@
 const mapCanvas = document.querySelector("#map-canvas");
 
 const renderInfoBlock = (arg) => {
-	// const resObjectsArr = Array.from({ length: 10 }, createObject);
+	// const resObjectsArr = Array.from({ length: 5 }, createObject);
 	console.log(arg);
 
 	const cardTemplate = document
@@ -118,6 +118,7 @@ const renderInfoBlock = (arg) => {
 		const objectFragment = document.createDocumentFragment();
 		objectFragment.appendChild(popupCard);
 		mapCanvas.appendChild(objectFragment);
+		mapCanvas.style.display = "flex";
 	});
 };
 
