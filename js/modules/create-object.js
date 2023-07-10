@@ -44,7 +44,6 @@ const createObject = () => {
 		},
 		offer: {
 			title: getRandomArrayValue(randomText),
-			// address: null,
 			address: `${objOneRandomFloatNumber}  ${objTwoRandomFloatNumber}`,
 			price: getRandomNumber(0, 100),
 			type: getRandomArrayValue(typeHousings),

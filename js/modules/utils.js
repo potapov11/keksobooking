@@ -22,7 +22,7 @@ const getRandomArrNumber = (array) => {
 	let randomNum = getRandomNumber(1, array.length - 1);
 	let randomNumberValue = array[randomNum];
 	if (randomNumberValue < 10) {
-		randomNum = "0" + randomNumberValue;
+		return (randomNum = "0" + randomNumberValue);
 	}
 	array = array.filter((item) => item !== randomNumberValue);
 	return randomNumberValue;
