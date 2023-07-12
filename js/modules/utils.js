@@ -37,10 +37,33 @@ const getRandomArrNumber = (array) => {
 	}
 };
 
+const checkType = (arg) => {
+	let type;
+	switch (arg) {
+		case "palace":
+			type = "Дворец";
+			break;
+		case "flat":
+			type = "Квартира";
+			break;
+		case "house":
+			type = "Дом";
+			break;
+		case "bungalow":
+			type = "Бунгало";
+			break;
+		case "hotel":
+			type = "Отель";
+			break;
+	}
+	return type;
+};
+
 export {
 	getRandomNumber,
 	getRandomArrayValue,
 	getNoRepeatArrayValue,
 	getRandomArrNumber,
 	numbers,
+	checkType,
 };

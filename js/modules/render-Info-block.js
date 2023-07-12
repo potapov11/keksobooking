@@ -1,7 +1,7 @@
-const mapCanvas = document.querySelector("#map-canvas");
+import { checkType } from "./utils.js";
+const mapcanvas = document.querySelector("#map-canvas");
 
 const renderInfoBlock = (arg) => {
-	// const resObjectsArr = Array.from({ length: 5 }, createObject);
 	console.log(arg);
 
 	const cardTemplate = document
@@ -32,24 +32,7 @@ const renderInfoBlock = (arg) => {
 		}
 
 		if (object?.offer?.type) {
-			let type;
-			switch (object.offer.type) {
-				case "palace":
-					type = "Дворец";
-					break;
-				case "flat":
-					type = "Квартира";
-					break;
-				case "house":
-					type = "Дом";
-					break;
-				case "bungalow":
-					type = "Бунгало";
-					break;
-				case "hotel":
-					type = "Отель";
-					break;
-			}
+			const type = checkType(object.offer.type);
 			popupCard.querySelector(".popup__type").textContent = type;
 		} else {
 			popupCard.querySelector(".popup__type").remove();
@@ -117,8 +100,8 @@ const renderInfoBlock = (arg) => {
 
 		const objectFragment = document.createDocumentFragment();
 		objectFragment.appendChild(popupCard);
-		mapCanvas.appendChild(objectFragment);
-		mapCanvas.style.display = "flex";
+		mapcanvas.appendChild(objectFragment);
+		mapcanvas.style.display = "flex";
 	});
 };
 
