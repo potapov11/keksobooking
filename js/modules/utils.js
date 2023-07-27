@@ -1,3 +1,5 @@
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 const getRandomNumber = (min, max, floatingNumber) => {
 	if (floatingNumber) {
 		let res = Math.random() * (max - min) + min;
@@ -14,18 +16,47 @@ const getRandomArrayValue = (array) => {
 };
 
 const getNoRepeatArrayValue = (array) => {
-	const randomFeaturesNumber = getRandomNumber(0, array.length - 1);
+	const randomFeaturesNumber = getRandomNumber(1, array.length);
 	return array.slice(0, randomFeaturesNumber);
 };
 
 const getRandomArrNumber = (array) => {
 	let randomNum = getRandomNumber(0, array.length - 1);
 	let randomNumberValue = array[randomNum];
+
 	if (randomNumberValue < 10) {
-		randomNum = "0" + randomNumberValue;
+		numbers = array.filter((item) => {
+			return item !== randomNumberValue;
+		});
+		return (randomNum = "0" + randomNumberValue);
+	} else {
+		numbers = array.filter((item) => {
+			return item !== randomNumberValue;
+		});
+		return randomNumberValue;
 	}
-	array = array.filter((item) => item !== randomNumberValue);
-	return randomNumberValue;
+};
+
+const checkType = (arg) => {
+	let type;
+	switch (arg) {
+		case "palace":
+			type = "Дворец";
+			break;
+		case "flat":
+			type = "Квартира";
+			break;
+		case "house":
+			type = "Дом";
+			break;
+		case "bungalow":
+			type = "Бунгало";
+			break;
+		case "hotel":
+			type = "Отель";
+			break;
+	}
+	return type;
 };
 
 export {
@@ -33,4 +64,6 @@ export {
 	getRandomArrayValue,
 	getNoRepeatArrayValue,
 	getRandomArrNumber,
+	numbers,
+	checkType,
 };

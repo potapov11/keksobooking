@@ -1,4 +1,5 @@
 import { createObject } from "./modules/create-object.js";
+import { renderInfoBlock } from "./modules/render-info-block.js";
 
-const resObjectsArr = Array.from({ length: 10 }, createObject);
-console.log(resObjectsArr);
+const resObjectsArr = createObject();
+renderInfoBlock(resObjectsArr);
