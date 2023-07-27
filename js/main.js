@@ -1,5 +1,8 @@
 import { createObject } from "./modules/create-object.js";
-import { renderInfoBlock } from "./modules/render-Info-block.js";
+import { renderInfoBlock } from "./modules/render-info-block.js";
+import { bloksForm, unlocksForm } from "./modules/blocks-unlocks-form.js";
 
-const resObject = createObject();
-renderInfoBlock(resObject);
+const resObjectsArr = createObject();
+renderInfoBlock(resObjectsArr);
+bloksForm();
+setTimeout(unlocksForm, 5000);

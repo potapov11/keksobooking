@@ -2,6 +2,7 @@ import { checkType } from "./utils.js";
 const mapcanvas = document.querySelector("#map-canvas");
 
 const renderInfoBlock = (object) => {
+	console.log(object);
 	const cardTemplate = document
 		.querySelector("#card")
 		.content.querySelector(".popup");
@@ -75,6 +76,7 @@ const renderInfoBlock = (object) => {
 
 	if (object?.offer?.photos) {
 		const photoList = popupCard.querySelector(".popup__photos");
+		console.log(photoList);
 		const photos = object.offer.photos;
 		const img = photoList.querySelector("img");
 
@@ -97,7 +99,6 @@ const renderInfoBlock = (object) => {
 	const objectFragment = document.createDocumentFragment();
 	objectFragment.appendChild(popupCard);
 	mapcanvas.appendChild(objectFragment);
-	mapcanvas.style.display = "flex";
 };
 
 export { renderInfoBlock };
