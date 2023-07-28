@@ -1,0 +1,28 @@
+const filters = document.querySelector(".map__filters");
+const form = document.querySelector(".ad-form");
+const fieldsets = form.querySelectorAll("fieldset");
+
+const bloksForm = () => {
+	form.classList.add("ad-form--disabled");
+	filters.classList.add("ad-form--disabled");
+	fieldsets.forEach((item) => {
+		item.setAttribute("disabled", "");
+	});
+	console.log(filters.children);
+	for (let i = 0; i < filters.children.length; i++) {
+		filters.children[i].setAttribute("disabled", "");
+	}
+};
+
+const unlocksForm = () => {
+	form.classList.remove("ad-form--disabled");
+	filters.classList.remove("ad-form--disabled");
+	fieldsets.forEach((item) => {
+		item.removeAttribute("disabled");
+	});
+	for (let i = 0; i < filters.children.length; i++) {
+		filters.children[i].removeAttribute("disabled");
+	}
+};
+
+export { bloksForm, unlocksForm };
