@@ -8,7 +8,6 @@ const bloksForm = () => {
 	fieldsets.forEach((item) => {
 		item.setAttribute("disabled", "");
 	});
-	console.log(filters.children);
 	for (let i = 0; i < filters.children.length; i++) {
 		filters.children[i].setAttribute("disabled", "");
 	}
