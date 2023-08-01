@@ -17,10 +17,10 @@ const formValidate = () => {
 		errorTextTag: "span",
 	});
 
-	const validateTitle = () => {
+	const validateTitle = (value) => {
 		return value.length >= 30 && value.length <= 100;
 	};
-	const validatePrice = () => {
+	const validatePrice = (value) => {
 		return value >= 1 && value <= 100000;
 	};
 	const validateRooms = () => {
@@ -30,8 +30,18 @@ const formValidate = () => {
 			return false;
 		}
 	};
+	const validMessage = () => {
+		const value = roomsElement.value;
 
-	// validateRooms();
+		if (value === "1") {
+			console.log(value);
+			return `Эта комната для ${value} гостя`;
+		} else if (value === "100") {
+			return `Эти комнаты не для гостей`;
+		} else {
+			return `Эта комната для ${value} гостей`;
+		}
+	};
 
 	pristine.addValidator(
 		form.querySelector("#title"),
@@ -45,7 +55,7 @@ const formValidate = () => {
 		"Максимальное значение — 100000"
 	);
 
-	pristine.addValidator(roomsElement, validateRooms, "Неправильно");
+	pristine.addValidator(roomsElement, validateRooms, validMessage);
 
 	capacityElement.addEventListener("change", () => {
 		pristine.validate(roomsElement);
