@@ -1,5 +1,11 @@
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
+	const roomsElement = form.querySelector('[name="rooms"]');
+	const capacityElement = form.querySelector('[name="capacity"]');
+	const typeElement = form.querySelector('[name="type"]');
+	const price = form.querySelector("#price");
+	const title = form.querySelector("#title");
+
 	const RoomGuests = {
 		1: ["1"],
 		2: ["1", "2"],
@@ -7,8 +13,13 @@ const formValidate = () => {
 		100: ["0"],
 	};
 
-	const roomsElement = form.querySelector('[name="rooms"]');
-	const capacityElement = form.querySelector('[name="capacity"]');
+	const typeRoomsPrices = {
+		bungalow: 0,
+		flat: 1000,
+		hotel: 3000,
+		house: 5000,
+		palace: 10000,
+	};
 
 	const pristine = new Pristine(form, {
 		classTo: "ad-form__element",
@@ -43,22 +54,19 @@ const formValidate = () => {
 		}
 	};
 
-	pristine.addValidator(
-		form.querySelector("#title"),
-		validateTitle,
-		"От 30 до 100 символов"
-	);
+	pristine.addValidator(title, validateTitle, "От 30 до 100 символов");
 
-	pristine.addValidator(
-		form.querySelector("#price"),
-		validatePrice,
-		"Максимальное значение — 100000"
-	);
+	pristine.addValidator(price, validatePrice, "Максимальное значение — 100000");
 
 	pristine.addValidator(roomsElement, validateRooms, validMessage);
 
 	capacityElement.addEventListener("change", () => {
 		pristine.validate(roomsElement);
+	});
+
+	typeElement.addEventListener("change", function () {
+		console.log(typeElement.value);
+		price.placeholder = typeRoomsPrices[typeElement.value];
 	});
 
 	form.addEventListener("submit", (evt) => {
