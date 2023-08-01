@@ -28,11 +28,44 @@ const formValidate = () => {
 		errorTextTag: "span",
 	});
 
+	let newAttribute;
+
+	typeElement.addEventListener("change", function () {
+		console.log(typeElement.value);
+		console.log(typeElement.value);
+		price.placeholder = typeRoomsPrices[typeElement.value];
+		price.removeAttribute("min");
+		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
+		newAttribute = price.getAttribute("min");
+		console.log(newAttribute);
+		console.log(typeof newAttribute);
+	});
+
+	let newPrice;
+	price.addEventListener("input", function () {
+		newPrice = price.value;
+		console.log(newPrice);
+		console.log(price.value);
+	});
+
+	const validPriceMessage = () => {
+		// console.log(newAttribute);
+		console.log(newPrice);
+		let newAttribute = price.getAttribute("min");
+		console.log(newAttribute);
+		if (parseInt(price.value) < parseInt(newAttribute)) {
+			return `Минимальное значение — ${newPrice}`;
+			// return `Минимальное значение — 5000`;
+		} else if (price.value > 100000) {
+			return "Максимальное значение — 100000";
+		}
+	};
+
 	const validateTitle = (value) => {
 		return value.length >= 30 && value.length <= 100;
 	};
 	const validatePrice = (value) => {
-		return value >= 1 && value <= 100000;
+		return value >= newAttribute && value <= 100000;
 	};
 	const validateRooms = () => {
 		if (RoomGuests[roomsElement.value].includes(capacityElement.value)) {
@@ -41,7 +74,8 @@ const formValidate = () => {
 			return false;
 		}
 	};
-	const validMessage = () => {
+
+	const validRoomMessage = () => {
 		const value = roomsElement.value;
 
 		if (value === "1") {
@@ -56,17 +90,15 @@ const formValidate = () => {
 
 	pristine.addValidator(title, validateTitle, "От 30 до 100 символов");
 
-	pristine.addValidator(price, validatePrice, "Максимальное значение — 100000");
+	pristine.addValidator(price, validatePrice, validPriceMessage);
 
-	pristine.addValidator(roomsElement, validateRooms, validMessage);
+	pristine.addValidator(roomsElement, validateRooms, validRoomMessage);
 
 	capacityElement.addEventListener("change", () => {
 		pristine.validate(roomsElement);
 	});
-
-	typeElement.addEventListener("change", function () {
-		console.log(typeElement.value);
-		price.placeholder = typeRoomsPrices[typeElement.value];
+	price.addEventListener("change", () => {
+		pristine.validate();
 	});
 
 	form.addEventListener("submit", (evt) => {
