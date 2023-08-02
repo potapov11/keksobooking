@@ -5,6 +5,21 @@ const formValidate = () => {
 	const typeElement = form.querySelector('[name="type"]');
 	const price = form.querySelector("#price");
 	const title = form.querySelector("#title");
+	const timein = form.querySelector("#timein");
+	const timeoutItem = form.querySelectorAll("#timeout option");
+
+	const changeTimeout = () => {
+		timein.addEventListener("change", function () {
+			timeoutItem.forEach((item) => {
+				if (item.value === timein.value) {
+					item.removeAttribute("selected");
+					item.setAttribute("selected", "true");
+				}
+			});
+		});
+	};
+
+	changeTimeout();
 
 	const RoomGuests = {
 		1: ["1"],
@@ -66,7 +81,6 @@ const formValidate = () => {
 		const value = roomsElement.value;
 
 		if (value === "1") {
-			console.log(value);
 			return `Эта комната для ${value} гостя`;
 		} else if (value === "100") {
 			return `Эти комнаты не для гостей`;
