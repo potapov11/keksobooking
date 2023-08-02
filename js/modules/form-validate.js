@@ -13,6 +13,8 @@ const formValidate = () => {
 		100: ["0"],
 	};
 
+	const maxPrice = 100000;
+
 	const typeRoomsPrices = {
 		bungalow: 0,
 		flat: 1000,
@@ -31,42 +33,27 @@ const formValidate = () => {
 	let newAttribute;
 
 	typeElement.addEventListener("change", function () {
-		console.log(typeElement.value);
-		console.log(typeElement.value);
 		price.placeholder = typeRoomsPrices[typeElement.value];
 		price.removeAttribute("min");
 		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
 		newAttribute = price.getAttribute("min");
-		console.log(newAttribute);
-		console.log(typeof newAttribute);
-	});
-
-	let newPrice;
-	price.addEventListener("input", function () {
-		newPrice = price.value;
-		console.log(newPrice);
-		console.log(price.value);
 	});
 
 	const validPriceMessage = () => {
-		// console.log(newAttribute);
-		console.log(newPrice);
-		let newAttribute = price.getAttribute("min");
-		console.log(newAttribute);
-		if (parseInt(price.value) < parseInt(newAttribute)) {
-			return `Минимальное значение — ${newPrice}`;
-			// return `Минимальное значение — 5000`;
-		} else if (price.value > 100000) {
-			return "Максимальное значение — 100000";
+		if (price.value >= maxPrice) {
+			return `Максимальная цена ${maxPrice}`;
 		}
+		return `Минимальная цена ${price.placeholder}`;
 	};
 
 	const validateTitle = (value) => {
 		return value.length >= 30 && value.length <= 100;
 	};
+
 	const validatePrice = (value) => {
 		return value >= newAttribute && value <= 100000;
 	};
+
 	const validateRooms = () => {
 		if (RoomGuests[roomsElement.value].includes(capacityElement.value)) {
 			return true;
