@@ -54,6 +54,7 @@ const formValidate = () => {
 		newAttribute = price.getAttribute("min");
 	});
 
+	//валидирует цену
 	const validPriceMessage = () => {
 		if (price.value >= maxPrice) {
 			return `Максимальная цена ${maxPrice}`;
