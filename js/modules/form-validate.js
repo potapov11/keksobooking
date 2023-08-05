@@ -6,20 +6,16 @@ const formValidate = () => {
 	const price = form.querySelector("#price");
 	const title = form.querySelector("#title");
 	const timein = form.querySelector("#timein");
-	const timeoutItem = form.querySelectorAll("#timeout option");
+	const timeout = form.querySelector("#timeout");
 
-	const changeTimeout = () => {
-		timein.addEventListener("change", function () {
-			timeoutItem.forEach((item) => {
-				if (item.value === timein.value) {
-					item.removeAttribute("selected");
-					item.setAttribute("selected", "true");
-				}
-			});
+	const setTimeoutInputHandler = (timeElementIn, timeElementOut) => {
+		timeElementIn.addEventListener("change", function () {
+			timeElementOut.value = timeElementIn.value;
 		});
 	};
 
-	changeTimeout();
+	setTimeoutInputHandler(timein, timeout);
+	setTimeoutInputHandler(timeout, timein);
 
 	const RoomGuests = {
 		1: ["1"],
@@ -45,18 +41,14 @@ const formValidate = () => {
 		errorTextTag: "span",
 	});
 
-	let newAttribute;
-
 	typeElement.addEventListener("change", function () {
 		price.placeholder = typeRoomsPrices[typeElement.value];
-		price.removeAttribute("min");
 		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
-		newAttribute = price.getAttribute("min");
 	});
 
 	//валидирует цену
 	const validPriceMessage = () => {
-		if (price.value >= maxPrice) {
+		if (Number(price.value) >= maxPrice) {
 			return `Максимальная цена ${maxPrice}`;
 		}
 		return `Минимальная цена ${price.placeholder}`;
@@ -67,7 +59,7 @@ const formValidate = () => {
 	};
 
 	const validatePrice = (value) => {
-		return value >= newAttribute && value <= 100000;
+		return Number(value) >= Number(price.min) && Number(value) <= 100000;
 	};
 
 	const validateRooms = () => {
@@ -99,6 +91,7 @@ const formValidate = () => {
 	capacityElement.addEventListener("change", () => {
 		pristine.validate(roomsElement);
 	});
+
 	price.addEventListener("change", () => {
 		pristine.validate();
 	});
