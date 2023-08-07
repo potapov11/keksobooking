@@ -8,14 +8,14 @@ const formValidate = () => {
 	const timein = form.querySelector("#timein");
 	const timeout = form.querySelector("#timeout");
 
-	const setTimeoutInputHandler = (timeElementIn, timeElementOut) => {
+	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
 			timeElementOut.value = timeElementIn.value;
 		});
 	};
 
-	setTimeoutInputHandler(timein, timeout);
-	setTimeoutInputHandler(timeout, timein);
+	setInputHandler(timein, timeout);
+	setInputHandler(timeout, timein);
 
 	const RoomGuests = {
 		1: ["1"],
@@ -34,6 +34,13 @@ const formValidate = () => {
 		palace: 10000,
 	};
 
+	const setAttributeMin = () => {
+		price.placeholder = typeRoomsPrices[typeElement.value];
+		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
+		price.min = typeRoomsPrices[typeElement.value];
+	};
+	setAttributeMin();
+
 	const pristine = new Pristine(form, {
 		classTo: "ad-form__element",
 		errorClass: "ad-form__element--invalid",
@@ -44,6 +51,7 @@ const formValidate = () => {
 	typeElement.addEventListener("change", function () {
 		price.placeholder = typeRoomsPrices[typeElement.value];
 		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
+		price.min = typeRoomsPrices[typeElement.value];
 	});
 
 	//валидирует цену
