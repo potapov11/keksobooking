@@ -36,7 +36,6 @@ const formValidate = () => {
 
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
-		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
 		price.min = typeRoomsPrices[typeElement.value];
 	};
 	setAttributeMin();
@@ -48,11 +47,7 @@ const formValidate = () => {
 		errorTextTag: "span",
 	});
 
-	typeElement.addEventListener("change", function () {
-		price.placeholder = typeRoomsPrices[typeElement.value];
-		price.setAttribute("min", `${typeRoomsPrices[typeElement.value]}`);
-		price.min = typeRoomsPrices[typeElement.value];
-	});
+	typeElement.addEventListener("change", setAttributeMin);
 
 	//валидирует цену
 	const validPriceMessage = () => {
