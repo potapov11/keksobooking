@@ -1,4 +1,4 @@
-import { unlockForm } from "./blocks-unlock-form.js";
+import { unlockForm } from "./block-unlock-form.js";
 import { createObject } from "./create-object.js";
 import { renderInfoBlock } from "./render-info-block.js";
 

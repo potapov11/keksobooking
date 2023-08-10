@@ -2,7 +2,7 @@ const filters = document.querySelector(".map__filters");
 const form = document.querySelector(".ad-form");
 const fieldsets = form.querySelectorAll("fieldset");
 
-const bloksForm = () => {
+const blockForm = () => {
 	form.classList.add("ad-form--disabled");
 	filters.classList.add("ad-form--disabled");
 	fieldsets.forEach((item) => {
@@ -24,4 +24,4 @@ const unlockForm = () => {
 	}
 };
 
-export { bloksForm, unlockForm };
+export { blockForm, unlockForm };
