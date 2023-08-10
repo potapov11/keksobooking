@@ -14,8 +14,6 @@ const createSlider = () => {
 		palace: 10000,
 	};
 
-	// idPrice.value = Number(idPrice.placeholder);
-
 	noUiSlider.create(sliderElement, {
 		range: {
 			min: 0,
@@ -34,7 +32,6 @@ const createSlider = () => {
 	selectField.addEventListener("change", (evt) => {
 		if (evt.target) {
 			const valuePrice = evt.target.value;
-			// console.log(valuePrice);
 			sliderElement.noUiSlider.updateOptions({
 				range: {
 					min: typeRoomsPrices[valuePrice],

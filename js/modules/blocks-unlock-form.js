@@ -13,7 +13,7 @@ const bloksForm = () => {
 	}
 };
 
-const unlocksForm = () => {
+const unlockForm = () => {
 	form.classList.remove("ad-form--disabled");
 	filters.classList.remove("ad-form--disabled");
 	fieldsets.forEach((item) => {
@@ -24,4 +24,4 @@ const unlocksForm = () => {
 	}
 };
 
-export { bloksForm, unlocksForm };
+export { bloksForm, unlockForm };

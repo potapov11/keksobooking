@@ -1,4 +1,4 @@
-import { unlocksForm } from "./blocks-unlocks-form.js";
+import { unlockForm } from "./blocks-unlock-form.js";
 import { createObject } from "./create-object.js";
 import { renderInfoBlock } from "./render-info-block.js";
 
@@ -8,21 +8,21 @@ const createMap = () => {
 	const TILE_LAYER = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 	const COPYRIGHT =
 		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-	const ZOOM = 14;
+	const ZOOM = 13;
 	const cityCenter = {
-		lat: 35.6894875,
-		lng: 139.6917064,
+		lat: 35.67409,
+		lng: 139.74321,
 	};
 
 	const map = L.map(mapElement)
 		.on("load", () => {
-			unlocksForm();
+			unlockForm();
 		})
 		.setView(cityCenter, ZOOM);
 
 	const startCoordinate = {
-		lat: 35.6895,
-		lng: 139.692,
+		lat: 35.67409,
+		lng: 139.74321,
 	};
 
 	//иконка
@@ -49,16 +49,11 @@ const createMap = () => {
 		iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
 	});
 
-	let resultAdressArr = [];
-	let resultCardArr = [];
-	for (let i = 0; i < 10; i++) {
-		const data = createObject();
-		const card = renderInfoBlock(data);
-		resultAdressArr.push(data.location);
-		resultCardArr.push(card);
-	}
-
-	resultAdressArr.forEach(({ lat, lng }, i) => {
+	//Получает и отрисовывает данные
+	Array.from({ length: 9 }, createObject).forEach((itemData) => {
+		const card = renderInfoBlock(itemData);
+		const lat = itemData.location.lat;
+		const lng = itemData.location.lng;
 		const marker = L.marker(
 			{
 				lat,
@@ -70,12 +65,12 @@ const createMap = () => {
 		);
 
 		marker.addTo(map);
-		marker.bindPopup(resultCardArr[i]);
+		marker.bindPopup(card);
 	});
 
 	//выставляет начальные координаты в adressInput
 	adressInput.value =
-		cityCenter.lat.toFixed(5) + "   " + cityCenter.lng.toFixed(5);
+		cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
 
 	L.tileLayer(TILE_LAYER, {
 		attribution: COPYRIGHT,
@@ -96,7 +91,6 @@ const createMap = () => {
 		const myLat = evt.target.getLatLng().lat;
 		const myLng = evt.target.getLatLng().lng;
 		adressInput.value = myLat.toFixed(5) + "   " + myLng.toFixed(5);
-		// console.log(myLatLng);
 	});
 };
 
