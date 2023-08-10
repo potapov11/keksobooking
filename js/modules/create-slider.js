@@ -34,9 +34,10 @@ const createSlider = () => {
 	selectField.addEventListener("change", (evt) => {
 		if (evt.target) {
 			const valuePrice = evt.target.value;
+			// console.log(valuePrice);
 			sliderElement.noUiSlider.updateOptions({
 				range: {
-					min: typeRoomsPrices.valuePrice,
+					min: typeRoomsPrices[valuePrice],
 					max: 50000,
 				},
 				step: 0.1,
