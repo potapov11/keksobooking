@@ -1,5 +1,5 @@
 const sliderElement = document.querySelector(".ad-form__slider");
-const valueElement = document.querySelector("#price");
+const valuePrice = document.querySelector("#price");
 const MAX_PRICE = 100000;
 const typeRoomsPrices = {
 	bungalow: 0,
@@ -31,7 +31,7 @@ const createSlider = () => {
 		},
 	});
 	sliderElement.noUiSlider.on("update", () => {
-		valueElement.value = sliderElement.noUiSlider.get();
+		valuePrice.value = sliderElement.noUiSlider.get();
 	});
 };
 
