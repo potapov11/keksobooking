@@ -8,6 +8,14 @@ const formValidate = () => {
 	const timein = form.querySelector("#timein");
 	const timeout = form.querySelector("#timeout");
 
+	const typeRoomsPrices = {
+		bungalow: 0,
+		flat: 1000,
+		hotel: 3000,
+		house: 5000,
+		palace: 10000,
+	};
+
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
 			timeElementOut.value = timeElementIn.value;
@@ -25,14 +33,6 @@ const formValidate = () => {
 	};
 
 	const maxPrice = 100000;
-
-	const typeRoomsPrices = {
-		bungalow: 0,
-		flat: 1000,
-		hotel: 3000,
-		house: 5000,
-		palace: 10000,
-	};
 
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
@@ -106,3 +106,10 @@ const formValidate = () => {
 };
 
 export { formValidate };
+export const typeRoomsPrices = {
+	bungalow: 0,
+	flat: 1000,
+	hotel: 3000,
+	house: 5000,
+	palace: 10000,
+};

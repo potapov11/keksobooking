@@ -1,13 +1,10 @@
+import { typeRoomsPrices } from "./form-validate.js";
+
 const sliderElement = document.querySelector(".ad-form__slider");
-const valuePrice = document.querySelector("#price");
+const priceElement = document.querySelector("#price");
+const typeElement = document.querySelector("[name='type']");
 const MAX_PRICE = 100000;
-const typeRoomsPrices = {
-	bungalow: 0,
-	flat: 1000,
-	hotel: 3000,
-	house: 5000,
-	palace: 10000,
-};
+const stepNumber = 1000;
 
 const createSlider = () => {
 	noUiSlider.create(sliderElement, {
@@ -16,7 +13,7 @@ const createSlider = () => {
 			max: MAX_PRICE,
 		},
 		start: 0,
-		step: 1000,
+		step: stepNumber,
 		connect: "lower",
 		format: {
 			to: function (value) {
@@ -31,7 +28,24 @@ const createSlider = () => {
 		},
 	});
 	sliderElement.noUiSlider.on("update", () => {
-		valuePrice.value = sliderElement.noUiSlider.get();
+		priceElement.value = sliderElement.noUiSlider.get();
+	});
+
+	typeElement.addEventListener("change", (evt) => {
+		priceElement.value = "";
+		sliderElement.noUiSlider.updateOptions({
+			range: {
+				min: 0,
+				max: MAX_PRICE,
+			},
+			start: 0,
+			step: stepNumber,
+		});
+
+		const changePrice = () => {
+			priceElement.value = typeRoomsPrices[typeElement.value];
+		};
+		changePrice();
 	});
 };
 
