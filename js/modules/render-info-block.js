@@ -96,7 +96,7 @@ const renderInfoBlock = (object) => {
 
 	const objectFragment = document.createDocumentFragment();
 	objectFragment.appendChild(popupCard);
-	mapcanvas.appendChild(objectFragment);
+	return popupCard;
 };
 
 export { renderInfoBlock };

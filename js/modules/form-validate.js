@@ -1,3 +1,5 @@
+import { typeRoomsPrices } from "./utils.js";
+
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
 	const roomsElement = form.querySelector('[name="rooms"]');
@@ -25,14 +27,6 @@ const formValidate = () => {
 	};
 
 	const maxPrice = 100000;
-
-	const typeRoomsPrices = {
-		bungalow: 0,
-		flat: 1000,
-		hotel: 3000,
-		house: 5000,
-		palace: 10000,
-	};
 
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];

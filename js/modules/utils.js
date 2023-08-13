@@ -1,5 +1,13 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+const typeRoomsPrices = {
+	bungalow: 0,
+	flat: 1000,
+	hotel: 3000,
+	house: 5000,
+	palace: 10000,
+};
+
 const getRandomNumber = (min, max, floatingNumber) => {
 	if (floatingNumber) {
 		let res = Math.random() * (max - min) + min;
@@ -66,4 +74,5 @@ export {
 	getRandomArrNumber,
 	numbers,
 	checkType,
+	typeRoomsPrices,
 };
