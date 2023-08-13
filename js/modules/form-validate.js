@@ -1,3 +1,5 @@
+import { typeRoomsPrices } from "./utils.js";
+
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
 	const roomsElement = form.querySelector('[name="rooms"]');
@@ -7,14 +9,6 @@ const formValidate = () => {
 	const title = form.querySelector("#title");
 	const timein = form.querySelector("#timein");
 	const timeout = form.querySelector("#timeout");
-
-	const typeRoomsPrices = {
-		bungalow: 0,
-		flat: 1000,
-		hotel: 3000,
-		house: 5000,
-		palace: 10000,
-	};
 
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
@@ -106,10 +100,3 @@ const formValidate = () => {
 };
 
 export { formValidate };
-export const typeRoomsPrices = {
-	bungalow: 0,
-	flat: 1000,
-	hotel: 3000,
-	house: 5000,
-	palace: 10000,
-};

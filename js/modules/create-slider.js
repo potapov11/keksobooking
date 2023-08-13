@@ -1,4 +1,4 @@
-import { typeRoomsPrices } from "./form-validate.js";
+import { typeRoomsPrices } from "./utils.js";
 
 const sliderElement = document.querySelector(".ad-form__slider");
 const priceElement = document.querySelector("#price");
