@@ -39,7 +39,7 @@ const createObject = () => {
 	const objTwoRandomFloatNumber = getRandomNumber(LNG_MIN, LNG_MAX, true);
 
 	return {
-		autor: {
+		author: {
 			avatar: `img/avatars/user${getRandomArrNumber(numbers)}.png`,
 		},
 		offer: {

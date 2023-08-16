@@ -1,6 +1,7 @@
-import { unlockForm } from "./block-unlock-form.js";
+import { unlockForm, unlockFilters } from "./block-unlock-form.js";
 import { createObject } from "./create-object.js";
 import { renderInfoBlock } from "./render-info-block.js";
+import { getData } from "./get-set-serverdata.js";
 
 const createMap = () => {
 	const adressInput = document.querySelector("#address");
@@ -49,24 +50,51 @@ const createMap = () => {
 		iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
 	});
 
-	//Получает и отрисовывает данные
-	Array.from({ length: 9 }, createObject).forEach((itemData) => {
-		const card = renderInfoBlock(itemData);
-		const lat = itemData.location.lat;
-		const lng = itemData.location.lng;
-		const marker = L.marker(
-			{
-				lat,
-				lng,
-			},
-			{
-				icon,
-			}
-		);
+	//Получает данныеn с сервера и отрисовывает
+	getData()
+		.then((data) => {
+			if (data) {
+				unlockFilters();
+				for (let i = 0; i < 10; i++) {
+					console.log(data[i]);
+					const card = renderInfoBlock(data[i]);
+					const lat = data[i].location.lat;
+					const lng = data[i].location.lng;
+					const marker = L.marker(
+						{
+							lat,
+							lng,
+						},
+						{
+							icon,
+						}
+					);
 
-		marker.addTo(map);
-		marker.bindPopup(card);
-	});
+					marker.addTo(map);
+					marker.bindPopup(card);
+				}
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	// Array.from({ length: 9 }, createObject).forEach((itemData) => {
+	// 	const card = renderInfoBlock(itemData);
+	// 	const lat = itemData.location.lat;
+	// 	const lng = itemData.location.lng;
+	// 	const marker = L.marker(
+	// 		{
+	// 			lat,
+	// 			lng,
+	// 		},
+	// 		{
+	// 			icon,
+	// 		}
+	// 	);
+
+	// 	marker.addTo(map);
+	// 	marker.bindPopup(card);
+	// });
 
 	//выставляет начальные координаты в adressInput
 	adressInput.value =
