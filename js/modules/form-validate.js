@@ -1,4 +1,5 @@
 import { typeRoomsPrices } from "./utils.js";
+import { showSuccess, showError } from "./error-succes-message.js";
 
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
@@ -9,6 +10,8 @@ const formValidate = () => {
 	const title = form.querySelector("#title");
 	const timein = form.querySelector("#timein");
 	const timeout = form.querySelector("#timeout");
+	const address = form.querySelector("#address");
+	const formReset = form.querySelector(".ad-form__reset");
 
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
@@ -67,6 +70,14 @@ const formValidate = () => {
 		}
 	};
 
+	const validateAddress = () => {
+		if (address.value) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	const validRoomMessage = () => {
 		const value = roomsElement.value;
 
@@ -85,6 +96,8 @@ const formValidate = () => {
 
 	pristine.addValidator(roomsElement, validateRooms, validRoomMessage);
 
+	pristine.addValidator(address, validateAddress, "Пожалуйста заполните адрес");
+
 	capacityElement.addEventListener("change", () => {
 		pristine.validate(roomsElement);
 	});
@@ -95,7 +108,36 @@ const formValidate = () => {
 
 	form.addEventListener("submit", (evt) => {
 		evt.preventDefault();
-		pristine.validate();
+		const valid = pristine.validate();
+		if (valid) {
+			const formData = new FormData(evt.target);
+
+			fetch("https://28.javascript.pages.academy/keksobookin", {
+				method: "POST",
+				body: formData,
+				type: "multipart/form-data",
+			})
+				.then((response) => {
+					if (response.ok) {
+						console.log(response.ok);
+						return response.json();
+					} else {
+						throw new Error("Ошибка HTTP: " + response.status);
+					}
+				})
+				.then(() => {
+					console.log("Успешно");
+					form.reset();
+					showSuccess();
+				})
+				.catch(() => {
+					showError();
+				});
+		}
+	});
+
+	formReset.addEventListener("reset", function () {
+		pristine.reset();
 	});
 };
 

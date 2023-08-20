@@ -5,10 +5,11 @@ import { formValidate } from "./modules/form-validate.js";
 import { createMap } from "./modules/create-map.js";
 import { createSlider } from "./modules/create-slider.js";
 import { getData } from "./modules/get-set-serverdata.js";
+// import { errorMessage } from "./modules/error-message.js";
 
 const resObjectsArr = createObject();
 blockForm();
-// setTimeout(unlockForm, 1000);
+// errorMessage();
 formValidate();
 createMap();
 createSlider();

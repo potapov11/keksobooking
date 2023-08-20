@@ -56,7 +56,6 @@ const createMap = () => {
 			if (data) {
 				unlockFilters();
 				for (let i = 0; i < 10; i++) {
-					console.log(data[i]);
 					const card = renderInfoBlock(data[i]);
 					const lat = data[i].location.lat;
 					const lng = data[i].location.lng;
@@ -78,27 +77,14 @@ const createMap = () => {
 		.catch((error) => {
 			console.log(error);
 		});
-	// Array.from({ length: 9 }, createObject).forEach((itemData) => {
-	// 	const card = renderInfoBlock(itemData);
-	// 	const lat = itemData.location.lat;
-	// 	const lng = itemData.location.lng;
-	// 	const marker = L.marker(
-	// 		{
-	// 			lat,
-	// 			lng,
-	// 		},
-	// 		{
-	// 			icon,
-	// 		}
-	// 	);
-
-	// 	marker.addTo(map);
-	// 	marker.bindPopup(card);
-	// });
 
 	//выставляет начальные координаты в adressInput
-	adressInput.value =
-		cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
+
+	const setAddressInput = () => {
+		adressInput.value =
+			cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
+	};
+	setAddressInput();
 
 	L.tileLayer(TILE_LAYER, {
 		attribution: COPYRIGHT,
