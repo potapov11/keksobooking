@@ -32,19 +32,30 @@ const showSuccess = () => {
 	});
 };
 
-//Покаываеи окно если отправка не успешна
 const showError = () => {
 	cloneElement = templateError.cloneNode(true);
 	const errorButton = cloneElement.querySelector(".error__button");
 
 	body.append(cloneElement);
 
-	document.addEventListener("keydown", closeEsc);
-	document.addEventListener("click", (evt) => {
+	const closeEsc = (evt) => {
+		if (evt.key === "Escape") {
+			cloneElement.remove();
+			document.removeEventListener("keydown", closeEsc);
+			document.removeEventListener("click", clickOutside);
+		}
+	};
+
+	const clickOutside = (evt) => {
 		if (evt.target.closest(".error") || evt.target === errorButton) {
 			cloneElement.remove();
+			document.removeEventListener("keydown", closeEsc);
+			document.removeEventListener("click", clickOutside);
 		}
-	});
+	};
+
+	document.addEventListener("keydown", closeEsc);
+	document.addEventListener("click", clickOutside);
 };
 
 export { showSuccess, showError };

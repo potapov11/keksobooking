@@ -1,5 +1,6 @@
 import { typeRoomsPrices } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
+import { setData } from "./get-set-serverdata.js";
 
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
@@ -111,28 +112,7 @@ const formValidate = () => {
 		const valid = pristine.validate();
 		if (valid) {
 			const formData = new FormData(evt.target);
-
-			fetch("https://28.javascript.pages.academy/keksobookin", {
-				method: "POST",
-				body: formData,
-				type: "multipart/form-data",
-			})
-				.then((response) => {
-					if (response.ok) {
-						console.log(response.ok);
-						return response.json();
-					} else {
-						throw new Error("Ошибка HTTP: " + response.status);
-					}
-				})
-				.then(() => {
-					console.log("Успешно");
-					form.reset();
-					showSuccess();
-				})
-				.catch(() => {
-					showError();
-				});
+			setData(formData, form, showSuccess, showError);
 		}
 	});
 

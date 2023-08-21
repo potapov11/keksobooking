@@ -10,4 +10,27 @@ const getData = () => {
 	);
 };
 
-export { getData };
+const setData = (data, form, success, error) => {
+	fetch("https://28.javascript.pages.academy/keksobookin", {
+		method: "POST",
+		body: data,
+		type: "multipart/form-data",
+	})
+		.then((response) => {
+			if (response.ok) {
+				console.log(response.ok);
+				return response.json();
+			} else {
+				throw new Error("Ошибка HTTP: " + response.status);
+			}
+		})
+		.then(() => {
+			form.reset();
+			success();
+		})
+		.catch(() => {
+			error();
+		});
+};
+
+export { getData, setData };

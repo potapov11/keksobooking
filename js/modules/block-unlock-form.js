@@ -15,7 +15,6 @@ const blockForm = () => {
 
 const unlockForm = () => {
 	form.classList.remove("ad-form--disabled");
-	// filters.classList.remove("ad-form--disabled");
 	fieldsets.forEach((item) => {
 		item.removeAttribute("disabled");
 	});
