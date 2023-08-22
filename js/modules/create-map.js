@@ -1,6 +1,5 @@
 import { unlockForm, unlockFilters } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
-import { getData } from "./get-set-serverdata.js";
 
 const adressInput = document.querySelector("#address");
 const mapElement = document.querySelector("#map-canvas");
@@ -31,23 +30,23 @@ const miniIconConfig = {
 	anchorY: 40,
 };
 
-const createMap = () => {
-	const map = L.map(mapElement)
-		.on("load", () => {
-			unlockForm();
-		})
-		.setView(cityCenter, ZOOM);
+const map = L.map(mapElement)
+	.on("load", () => {
+		unlockForm();
+	})
+	.setView(cityCenter, ZOOM);
 
+const icon = L.icon({
+	iconUrl: miniIconConfig.url,
+	iconSize: [miniIconConfig.width, miniIconConfig.height],
+	iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
+});
+
+const createMap = (data) => {
 	const startCoordinate = {
 		lat: 35.67409,
 		lng: 139.74321,
 	};
-
-	const icon = L.icon({
-		iconUrl: miniIconConfig.url,
-		iconSize: [miniIconConfig.width, miniIconConfig.height],
-		iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
-	});
 
 	const mainPinIcon = L.icon({
 		iconUrl: iconConfig.url,
@@ -77,9 +76,11 @@ const createMap = () => {
 		const myLng = evt.target.getLatLng().lng;
 		adressInput.value = myLat.toFixed(5) + "   " + myLng.toFixed(5);
 	});
+};
 
-	//Получает данные с сервера и отрисовывает
-	getData()
+//Получает данные с сервера и отрисовывает
+const renderData = (data) => {
+	data
 		.then((data) => {
 			if (data) {
 				unlockFilters();
@@ -107,4 +108,4 @@ const createMap = () => {
 		});
 };
 
-export { createMap };
+export { createMap, renderData };
