@@ -10,8 +10,8 @@ const getData = () => {
 	);
 };
 
-const setData = (data, form, success, error) => {
-	fetch("https://28.javascript.pages.academy/keksobookin", {
+const sendData = (data, success, error) => {
+	fetch("https://28.javascript.pages.academy/keksobooking", {
 		method: "POST",
 		body: data,
 		type: "multipart/form-data",
@@ -25,7 +25,6 @@ const setData = (data, form, success, error) => {
 			}
 		})
 		.then(() => {
-			form.reset();
 			success();
 		})
 		.catch(() => {
@@ -33,4 +32,4 @@ const setData = (data, form, success, error) => {
 		});
 };
 
-export { getData, setData };
+export { getData, sendData };

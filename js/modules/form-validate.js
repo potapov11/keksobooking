@@ -1,6 +1,6 @@
 import { typeRoomsPrices } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
-import { setData } from "./get-set-serverdata.js";
+import { sendData } from "./get-set-serverdata.js";
 
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
@@ -112,7 +112,14 @@ const formValidate = () => {
 		const valid = pristine.validate();
 		if (valid) {
 			const formData = new FormData(evt.target);
-			setData(formData, form, showSuccess, showError);
+			sendData(
+				formData,
+				() => {
+					showSuccess();
+					form.reset();
+				},
+				showError
+			);
 		}
 	});
 

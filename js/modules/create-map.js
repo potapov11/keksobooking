@@ -1,4 +1,4 @@
-import { unlockForm, unlockFilters } from "./block-unlock-form.js";
+import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
 
 const adressInput = document.querySelector("#address");
@@ -30,11 +30,7 @@ const miniIconConfig = {
 	anchorY: 40,
 };
 
-const map = L.map(mapElement)
-	.on("load", () => {
-		unlockForm();
-	})
-	.setView(cityCenter, ZOOM);
+let map;
 
 const icon = L.icon({
 	iconUrl: miniIconConfig.url,
@@ -42,7 +38,15 @@ const icon = L.icon({
 	iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
 });
 
-const createMap = (data) => {
+const createMap = () => {
+	blockForm();
+
+	map = L.map(mapElement)
+		.on("load", () => {
+			unlockForm();
+		})
+		.setView(cityCenter, ZOOM);
+
 	const startCoordinate = {
 		lat: 35.67409,
 		lng: 139.74321,
@@ -79,33 +83,27 @@ const createMap = (data) => {
 };
 
 //Получает данные с сервера и отрисовывает
-const renderData = (data) => {
-	data
-		.then((data) => {
-			if (data) {
-				unlockFilters();
-				for (let i = 0; i < 10; i++) {
-					const card = renderInfoBlock(data[i]);
-					const lat = data[i].location.lat;
-					const lng = data[i].location.lng;
-					const marker = L.marker(
-						{
-							lat,
-							lng,
-						},
-						{
-							icon,
-						}
-					);
-
-					marker.addTo(map);
-					marker.bindPopup(card);
+const renderPins = (data) => {
+	if (data) {
+		unlockFilters();
+		for (let i = 0; i < 10; i++) {
+			const card = renderInfoBlock(data[i]);
+			const lat = data[i].location.lat;
+			const lng = data[i].location.lng;
+			const marker = L.marker(
+				{
+					lat,
+					lng,
+				},
+				{
+					icon,
 				}
-			}
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+			);
+
+			marker.addTo(map);
+			marker.bindPopup(card);
+		}
+	}
 };
 
-export { createMap, renderData };
+export { createMap, renderPins };
