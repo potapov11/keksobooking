@@ -88,8 +88,8 @@ const renderInfoBlock = (object) => {
 		popupCard.querySelector(".popup__photos").remove();
 	}
 
-	if (object?.autor?.avatar) {
-		popupCard.querySelector(".popup__avatar").src = object.autor.avatar;
+	if (object?.author?.avatar) {
+		popupCard.querySelector(".popup__avatar").src = object.author.avatar;
 	} else {
 		popupCard.querySelector(".popup__avatar").remove();
 	}
