@@ -1,5 +1,10 @@
 import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
+///////////
+// import { filterMap } from "./filter-map.js";
+const form = document.querySelector(".map__filters");
+
+//////////
 
 const adressInput = document.querySelector("#address");
 const mapElement = document.querySelector("#map-canvas");
@@ -82,12 +87,74 @@ const createMap = () => {
 	});
 };
 
+/////////
+
+const housePrices = {
+	low: {
+		from: 0,
+		to: 10000,
+	},
+
+	middle: {
+		from: 10000,
+		to: 50000,
+	},
+
+	high: {
+		from: 50000,
+		to: 100000,
+	},
+};
+
 //Получает данные с сервера и отрисовывает
 const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
+
+		//обработчик события на изменения в фильтрах
+		form.addEventListener("change", function (evt) {
+			// очищаем карту от старых маркеров
+			const leafletMarkers = document.querySelectorAll(".leaflet-marker-icon");
+			leafletMarkers.forEach((item) => {
+				item.remove();
+			});
+
+			const selectedPriceRange = housePrices[evt.target.value];
+			const filteredData = data.filter((item) => {
+				return (
+					item.offer.price >= selectedPriceRange.from &&
+					item.offer.price <= selectedPriceRange.to
+				);
+			});
+			// теперь массив filteredData содержит только те элементы, цена которых попадает в выбранный диапазон
+			console.log(filteredData);
+			console.log(filteredData.length);
+			if (filteredData) {
+				for (let i = 0; i < filteredData.length; i++) {
+					console.log(filteredData[i]);
+					const card = renderInfoBlock(filteredData[i]);
+
+					const lat = data[i].location.lat;
+					const lng = data[i].location.lng;
+					const marker = L.marker(
+						{
+							lat,
+							lng,
+						},
+						{
+							icon,
+						}
+					);
+
+					marker.addTo(map);
+					marker.bindPopup(card);
+				}
+			}
+		});
+
 		for (let i = 0; i < 10; i++) {
 			const card = renderInfoBlock(data[i]);
+
 			const lat = data[i].location.lat;
 			const lng = data[i].location.lng;
 			const marker = L.marker(
