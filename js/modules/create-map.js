@@ -170,7 +170,7 @@ const renderPins = (data) => {
 				popupOpened.remove();
 			}
 
-			//Выбираем все выбранные чекбоксы
+			//Выбираем все выбранные чекбоксы /
 			const selectedFeatures = Array.from(
 				document.querySelectorAll(
 					'#housing-features input[type="checkbox"]:checked'
@@ -200,25 +200,6 @@ const renderPins = (data) => {
 							)))
 				);
 			});
-
-			// const selectedType = document.querySelector("#housing-type").value;
-			// const selectedPrice = document.querySelector("#housing-price").value;
-			// const selectedRooms = document.querySelector("#housing-rooms").value;
-			// const selectedGuests = document.querySelector("#housing-guests").value;
-
-			// const filteredData = data.filter((item) => {
-			// 	return (
-			// 		(selectedType === "any" || item.offer.type === selectedType) &&
-			// 		(selectedPrice === "any" ||
-			// 			(selectedPrice === "low" && item.offer.price < 10000) ||
-			// 			(selectedPrice === "middle" &&
-			// 				item.offer.price >= 10000 &&
-			// 				item.offer.price <= 50000) ||
-			// 			(selectedPrice === "high" && item.offer.price > 50000)) &&
-			// 		(selectedRooms === "any" || item.offer.rooms == selectedRooms) &&
-			// 		(selectedGuests === "any" || item.offer.guests == selectedGuests)
-			// 	);
-			// });
 
 			// массив filteredData содержит только те элементы, которые соответствуют выбранным фильтрам
 			console.log(filteredData);
