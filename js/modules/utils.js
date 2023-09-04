@@ -28,4 +28,12 @@ const checkType = (arg) => {
 	return type;
 };
 
-export { checkType, typeRoomsPrices };
+const debounce = (callback, timer) => {
+	let timeoutId;
+	return (...args) => {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => callback.apply(this, args), timer);
+	};
+};
+
+export { checkType, typeRoomsPrices, debounce };

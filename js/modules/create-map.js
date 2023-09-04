@@ -1,5 +1,10 @@
 import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
+import { filterMap } from "./filter-map.js";
+import { debounce } from "./utils.js";
+// const form = document.querySelector(".map__filters");
+
+const DEBOUNCE_TIMER = 500;
 
 const adressInput = document.querySelector("#address");
 const mapElement = document.querySelector("#map-canvas");
@@ -86,8 +91,17 @@ const createMap = () => {
 const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
+		// filterMap(data);
+		const form = document.querySelector(".map__filters");
+
+		form.addEventListener(
+			"change",
+			debounce(() => filterMap(data), DEBOUNCE_TIMER)
+		);
+
 		for (let i = 0; i < 10; i++) {
 			const card = renderInfoBlock(data[i]);
+
 			const lat = data[i].location.lat;
 			const lng = data[i].location.lng;
 			const marker = L.marker(
@@ -106,4 +120,4 @@ const renderPins = (data) => {
 	}
 };
 
-export { createMap, renderPins };
+export { createMap, renderPins, icon, map };
