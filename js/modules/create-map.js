@@ -99,7 +99,7 @@ const renderPins = (data) => {
 			debounce(() => filterMap(data), DEBOUNCE_TIMER)
 		);
 
-		for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < 10; i++) {
 			const card = renderInfoBlock(data[i]);
 
 			const lat = data[i].location.lat;
