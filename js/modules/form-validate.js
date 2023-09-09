@@ -1,6 +1,7 @@
 import { typeRoomsPrices } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
+import { cleansFilterForm } from "./utils.js";
 
 const formValidate = () => {
 	const form = document.querySelector(".ad-form");
@@ -13,6 +14,7 @@ const formValidate = () => {
 	const timeout = form.querySelector("#timeout");
 	const address = form.querySelector("#address");
 	const formReset = form.querySelector(".ad-form__reset");
+	const formBtnSend = form.querySelector(".ad-form__submit");
 
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
@@ -111,12 +113,15 @@ const formValidate = () => {
 		evt.preventDefault();
 		const valid = pristine.validate();
 		if (valid) {
+			formBtnSend.setAttribute("disabled", "true");
 			const formData = new FormData(evt.target);
 			sendData(
 				formData,
 				() => {
 					showSuccess();
+					formBtnSend.removeAttribute("disabled");
 					form.reset();
+					cleansFilterForm();
 				},
 				showError
 			);
@@ -125,6 +130,12 @@ const formValidate = () => {
 
 	formReset.addEventListener("reset", function () {
 		pristine.reset();
+	});
+	formReset.addEventListener("click", function () {
+		cleansFilterForm();
+	});
+	formReset.removeEventListener("click", function () {
+		cleansFilterForm();
 	});
 };
 

@@ -6,6 +6,8 @@ const typeRoomsPrices = {
 	palace: 10000,
 };
 
+const filterHousingTypes = document.querySelectorAll(".map__filter");
+
 const checkType = (arg) => {
 	let type;
 	switch (arg) {
@@ -36,4 +38,21 @@ const debounce = (callback, timer) => {
 	};
 };
 
-export { checkType, typeRoomsPrices, debounce };
+//fixed
+const cleansFilterForm = () => {
+	const selectedFeatures = Array.from(
+		document.querySelectorAll(
+			'#housing-features input[type="checkbox"]:checked'
+		)
+	);
+	selectedFeatures.forEach((feature) => {
+		feature.checked = false;
+	});
+	filterHousingTypes.forEach((housingType) => {
+		housingType.value = "any";
+	});
+	console.log("Сброшено");
+};
+//
+
+export { checkType, typeRoomsPrices, debounce, cleansFilterForm };

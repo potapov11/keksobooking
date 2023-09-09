@@ -48,9 +48,7 @@ const filterMap = (data) => {
 
 	if (filteredData) {
 		for (let i = 0; i < filteredData.length; i++) {
-			console.log(filteredData[i]);
 			const card = renderInfoBlock(filteredData[i]);
-
 			const lat = data[i].location.lat;
 			const lng = data[i].location.lng;
 			const marker = L.marker(
