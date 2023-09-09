@@ -6,7 +6,10 @@ import { createSlider } from "./modules/create-slider.js";
 import { getData } from "./modules/./get-set-serverdata.js";
 
 const data = getData();
-data.then((data) => renderPins(data));
+data.then((data) => {
+	renderPins(data);
+	formValidate(data);
+});
 formValidate();
 blockForm();
 createMap();

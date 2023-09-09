@@ -1,9 +1,9 @@
-import { typeRoomsPrices } from "./utils.js";
+import { typeRoomsPrices, cleansFilterForm, returnsMarker } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
-import { cleansFilterForm } from "./utils.js";
+import { renderPins } from "./create-map.js";
 
-const formValidate = () => {
+const formValidate = (data) => {
 	const form = document.querySelector(".ad-form");
 	const roomsElement = form.querySelector('[name="rooms"]');
 	const capacityElement = form.querySelector('[name="capacity"]');
@@ -122,20 +122,29 @@ const formValidate = () => {
 					formBtnSend.removeAttribute("disabled");
 					form.reset();
 					cleansFilterForm();
+					returnsMarker();
 				},
 				showError
 			);
 		}
 	});
 
-	formReset.addEventListener("reset", function () {
-		pristine.reset();
-	});
+	// formReset.addEventListener("reset", function () {
+	// 	pristine.reset();
+	// });
+
 	formReset.addEventListener("click", function () {
 		cleansFilterForm();
+		returnsMarker();
+		renderPins(data);
+		pristine.reset();
 	});
+
 	formReset.removeEventListener("click", function () {
 		cleansFilterForm();
+		returnsMarker();
+		renderPins(data);
+		pristine.reset();
 	});
 };
 

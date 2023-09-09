@@ -25,6 +25,19 @@ const iconConfig = {
 	anchorX: 26,
 	anchorY: 52,
 };
+const mainPinIcon = L.icon({
+	iconUrl: iconConfig.url,
+	iconSize: [iconConfig.width, iconConfig.height],
+	iconAnchor: [iconConfig.anchorX, iconConfig.anchorY],
+});
+const startCoordinate = {
+	lat: 35.67409,
+	lng: 139.74321,
+};
+const mainPinMarker = L.marker(startCoordinate, {
+	draggable: true,
+	icon: mainPinIcon,
+});
 
 //ДопИконка
 const miniIconConfig = {
@@ -51,22 +64,6 @@ const createMap = () => {
 			unlockForm();
 		})
 		.setView(cityCenter, ZOOM);
-
-	const startCoordinate = {
-		lat: 35.67409,
-		lng: 139.74321,
-	};
-
-	const mainPinIcon = L.icon({
-		iconUrl: iconConfig.url,
-		iconSize: [iconConfig.width, iconConfig.height],
-		iconAnchor: [iconConfig.anchorX, iconConfig.anchorY],
-	});
-
-	const mainPinMarker = L.marker(startCoordinate, {
-		draggable: true,
-		icon: mainPinIcon,
-	});
 
 	//выставляет начальные координаты в adressInput
 	const setAddressInput = () => {
@@ -118,6 +115,7 @@ const renderPins = (data) => {
 			marker.bindPopup(card);
 		}
 	}
+	console.log("renderPins");
 };
 
-export { createMap, renderPins, icon, map };
+export { createMap, renderPins, icon, map, mainPinMarker, startCoordinate };

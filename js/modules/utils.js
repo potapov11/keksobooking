@@ -1,3 +1,5 @@
+import { mainPinMarker, startCoordinate } from "./create-map.js";
+
 const typeRoomsPrices = {
 	bungalow: 0,
 	flat: 1000,
@@ -51,8 +53,17 @@ const cleansFilterForm = () => {
 	filterHousingTypes.forEach((housingType) => {
 		housingType.value = "any";
 	});
-	console.log("Сброшено");
+};
+
+const returnsMarker = () => {
+	mainPinMarker.setLatLng(startCoordinate);
 };
 //
 
-export { checkType, typeRoomsPrices, debounce, cleansFilterForm };
+export {
+	checkType,
+	typeRoomsPrices,
+	debounce,
+	cleansFilterForm,
+	returnsMarker,
+};
