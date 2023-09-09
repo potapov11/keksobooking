@@ -1,13 +1,15 @@
-const getData = () => {
-	return fetch("https://28.javascript.pages.academy/keksobooking/data").then(
-		(response) => {
+const getData = (showError) => {
+	return fetch("https://28.javascript.pages.academy/keksobooking/data")
+		.then((response) => {
 			if (response.ok) {
 				return response.json();
 			} else {
 				throw new Error(`Ошибка HTTP: ${response.status}`);
 			}
-		}
-	);
+		})
+		.catch(() => {
+			showError();
+		});
 };
 
 const sendData = (data, success, error) => {
