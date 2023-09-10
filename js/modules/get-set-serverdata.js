@@ -1,3 +1,5 @@
+import { showError } from "./error-succes-message.js";
+
 const getData = (showError) => {
 	return fetch("https://28.javascript.pages.academy/keksobooking/data")
 		.then((response) => {
@@ -9,6 +11,11 @@ const getData = (showError) => {
 		})
 		.catch(() => {
 			showError();
+			document
+				.querySelector(".error__button")
+				.addEventListener("click", function () {
+					getData(showError);
+				});
 		});
 };
 
