@@ -9,7 +9,7 @@ import { showError } from "./modules/error-succes-message.js";
 const data = getData(showError);
 data.then((data) => {
 	renderPins(data);
-	formValidate(data);
+	// formValidate(data);
 });
 formValidate();
 blockForm();

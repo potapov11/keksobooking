@@ -1,6 +1,7 @@
 import { typeRoomsPrices, cleansFilterForm, returnsMarker } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
+import { getData } from "./get-set-serverdata.js";
 import { renderPins } from "./create-map.js";
 
 const formValidate = (data) => {
@@ -136,7 +137,10 @@ const formValidate = (data) => {
 	formReset.addEventListener("click", function () {
 		cleansFilterForm();
 		returnsMarker();
-		renderPins(data);
+		const data = getData();
+		data.then((data) => {
+			renderPins(data);
+		});
 		pristine.reset();
 	});
 
