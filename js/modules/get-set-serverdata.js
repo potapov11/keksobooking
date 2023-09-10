@@ -27,7 +27,6 @@ const sendData = (data, success, error) => {
 	})
 		.then((response) => {
 			if (response.ok) {
-				console.log(response.ok);
 				return response.json();
 			} else {
 				throw new Error("Ошибка HTTP: " + response.status);

@@ -1,5 +1,4 @@
 import { checkType } from "./utils.js";
-const mapcanvas = document.querySelector("#map-canvas");
 
 const renderInfoBlock = (object) => {
 	const cardTemplate = document

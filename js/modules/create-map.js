@@ -2,10 +2,8 @@ import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
 import { filterMap } from "./filter-map.js";
 import { debounce } from "./utils.js";
-// const form = document.querySelector(".map__filters");
 
 const DEBOUNCE_TIMER = 500;
-
 const adressInput = document.querySelector("#address");
 const mapElement = document.querySelector("#map-canvas");
 const TILE_LAYER = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -16,15 +14,6 @@ const cityCenter = {
 	lat: 35.67409,
 	lng: 139.74321,
 };
-
-//выставляет начальные координаты в adressInput
-const setAddressInput = () => {
-	console.log("setAddressInput");
-	adressInput.value =
-		cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
-};
-setAddressInput();
-
 //иконка
 const iconConfig = {
 	url: "./img/main-pin.svg",
@@ -56,13 +45,20 @@ const miniIconConfig = {
 	anchorY: 40,
 };
 
-let map;
-
 const icon = L.icon({
 	iconUrl: miniIconConfig.url,
 	iconSize: [miniIconConfig.width, miniIconConfig.height],
 	iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
 });
+
+let map;
+
+//выставляет начальные координаты в adressInput
+const setAddressInput = () => {
+	adressInput.value =
+		cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
+};
+setAddressInput();
 
 const createMap = () => {
 	blockForm();
@@ -127,5 +123,4 @@ export {
 	mainPinMarker,
 	startCoordinate,
 	cityCenter,
-	setAddressInput,
 };

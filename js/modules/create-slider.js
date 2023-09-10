@@ -4,7 +4,7 @@ const sliderElement = document.querySelector(".ad-form__slider");
 const priceElement = document.querySelector("#price");
 const typeElement = document.querySelector("[name='type']");
 const MAX_PRICE = 100000;
-const stepNumber = 1000;
+const STEP_NUMBER = 1000;
 
 const createSlider = () => {
 	noUiSlider.create(sliderElement, {
@@ -13,7 +13,7 @@ const createSlider = () => {
 			max: MAX_PRICE,
 		},
 		start: 0,
-		step: stepNumber,
+		step: STEP_NUMBER,
 		connect: "lower",
 		format: {
 			to: function (value) {
@@ -39,7 +39,7 @@ const createSlider = () => {
 				max: MAX_PRICE,
 			},
 			start: 0,
-			step: stepNumber,
+			step: STEP_NUMBER,
 		});
 
 		const changePrice = () => {

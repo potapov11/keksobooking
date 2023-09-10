@@ -2,10 +2,9 @@ import { typeRoomsPrices, cleansFilterForm, returnsMarker } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
-import { renderPins, cityCenter, setAddressInput } from "./create-map.js";
-import { setAddressPlaceholder } from "./utils.js";
+import { renderPins, cityCenter } from "./create-map.js";
 
-const formValidate = (data) => {
+const validatesForm = () => {
 	const form = document.querySelector(".ad-form");
 	const roomsElement = form.querySelector('[name="rooms"]');
 	const capacityElement = form.querySelector('[name="capacity"]');
@@ -18,6 +17,15 @@ const formValidate = (data) => {
 	const formReset = form.querySelector(".ad-form__reset");
 	const formBtnSend = form.querySelector(".ad-form__submit");
 
+	const ROOM_GUESTS = {
+		1: ["1"],
+		2: ["1", "2"],
+		3: ["1", "2", "3"],
+		100: ["0"],
+	};
+
+	const MAX_PRICE = 100000;
+
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
 			timeElementOut.value = timeElementIn.value;
@@ -26,15 +34,6 @@ const formValidate = (data) => {
 
 	setInputHandler(timein, timeout);
 	setInputHandler(timeout, timein);
-
-	const RoomGuests = {
-		1: ["1"],
-		2: ["1", "2"],
-		3: ["1", "2", "3"],
-		100: ["0"],
-	};
-
-	const maxPrice = 100000;
 
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
@@ -53,8 +52,8 @@ const formValidate = (data) => {
 
 	//валидирует цену
 	const validPriceMessage = () => {
-		if (Number(price.value) >= maxPrice) {
-			return `Максимальная цена ${maxPrice}`;
+		if (Number(price.value) >= MAX_PRICE) {
+			return `Максимальная цена ${MAX_PRICE}`;
 		}
 		return `Минимальная цена ${price.placeholder}`;
 	};
@@ -68,7 +67,7 @@ const formValidate = (data) => {
 	};
 
 	const validateRooms = () => {
-		if (RoomGuests[roomsElement.value].includes(capacityElement.value)) {
+		if (ROOM_GUESTS[roomsElement.value].includes(capacityElement.value)) {
 			return true;
 		} else {
 			return false;
@@ -132,11 +131,13 @@ const formValidate = (data) => {
 		}
 	});
 
-	// formReset.addEventListener("reset", function () {
-	// 	pristine.reset();
-	// });
+	const setAddressInput = () => {
+		address.value =
+			cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
+	};
 
 	formReset.addEventListener("click", function () {
+		setAddressInput();
 		cleansFilterForm();
 		returnsMarker();
 		const data = getData();
@@ -144,14 +145,10 @@ const formValidate = (data) => {
 			renderPins(data);
 		});
 		pristine.reset();
-	});
-
-	formReset.removeEventListener("click", function () {
-		cleansFilterForm();
-		returnsMarker();
-		renderPins(data);
-		pristine.reset();
+		setTimeout(function () {
+			setAddressInput();
+		}, 500);
 	});
 };
 
-export { formValidate };
+export { validatesForm };

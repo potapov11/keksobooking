@@ -59,17 +59,10 @@ const returnsMarker = () => {
 	mainPinMarker.setLatLng(startCoordinate);
 };
 
-const setAddressPlaceholder = () => {
-	const adressInput = document.querySelector("#address");
-	adressInput.placeholder = "привет";
-};
-//
-
 export {
 	checkType,
 	typeRoomsPrices,
 	debounce,
 	cleansFilterForm,
 	returnsMarker,
-	setAddressPlaceholder,
 };

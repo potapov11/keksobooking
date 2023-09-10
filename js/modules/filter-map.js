@@ -64,7 +64,6 @@ const filterMap = (data) => {
 			marker.addTo(map);
 			marker.bindPopup(card);
 		}
-		// renderPins(filteredData);
 	}
 };
 
