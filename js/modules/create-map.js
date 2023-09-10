@@ -85,7 +85,6 @@ const createMap = () => {
 const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
-		// filterMap(data);
 		const form = document.querySelector(".map__filters");
 
 		form.addEventListener(
@@ -112,7 +111,6 @@ const renderPins = (data) => {
 			marker.bindPopup(card);
 		}
 	}
-	console.log("renderPins");
 };
 
 export {

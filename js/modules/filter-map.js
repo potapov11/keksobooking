@@ -1,10 +1,12 @@
 import { renderInfoBlock } from "./render-info-block.js";
-import { icon, map, renderPins } from "./create-map.js";
+import { icon, map } from "./create-map.js";
 
 const filterMap = (data) => {
 	const mapMarkers = document.querySelectorAll(".leaflet-marker-icon");
 	mapMarkers.forEach((item) => {
-		item.remove();
+		if (item.classList.length === 3) {
+			item.remove();
+		}
 	});
 
 	//Удаляем открытый попап
