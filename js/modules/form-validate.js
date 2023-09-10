@@ -2,7 +2,8 @@ import { typeRoomsPrices, cleansFilterForm, returnsMarker } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
-import { renderPins } from "./create-map.js";
+import { renderPins, cityCenter, setAddressInput } from "./create-map.js";
+import { setAddressPlaceholder } from "./utils.js";
 
 const formValidate = (data) => {
 	const form = document.querySelector(".ad-form");
@@ -124,6 +125,7 @@ const formValidate = (data) => {
 					form.reset();
 					cleansFilterForm();
 					returnsMarker();
+					setAddressInput();
 				},
 				showError
 			);

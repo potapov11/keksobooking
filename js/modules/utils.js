@@ -1,4 +1,4 @@
-import { mainPinMarker, startCoordinate } from "./create-map.js";
+import { mainPinMarker, startCoordinate, cityCenter } from "./create-map.js";
 
 const typeRoomsPrices = {
 	bungalow: 0,
@@ -58,6 +58,11 @@ const cleansFilterForm = () => {
 const returnsMarker = () => {
 	mainPinMarker.setLatLng(startCoordinate);
 };
+
+const setAddressPlaceholder = () => {
+	const adressInput = document.querySelector("#address");
+	adressInput.placeholder = "привет";
+};
 //
 
 export {
@@ -66,4 +71,5 @@ export {
 	debounce,
 	cleansFilterForm,
 	returnsMarker,
+	setAddressPlaceholder,
 };

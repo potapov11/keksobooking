@@ -17,6 +17,14 @@ const cityCenter = {
 	lng: 139.74321,
 };
 
+//выставляет начальные координаты в adressInput
+const setAddressInput = () => {
+	console.log("setAddressInput");
+	adressInput.value =
+		cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
+};
+setAddressInput();
+
 //иконка
 const iconConfig = {
 	url: "./img/main-pin.svg",
@@ -65,13 +73,6 @@ const createMap = () => {
 		})
 		.setView(cityCenter, ZOOM);
 
-	//выставляет начальные координаты в adressInput
-	const setAddressInput = () => {
-		adressInput.value =
-			cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
-	};
-	setAddressInput();
-
 	L.tileLayer(TILE_LAYER, {
 		attribution: COPYRIGHT,
 	}).addTo(map);
@@ -118,4 +119,13 @@ const renderPins = (data) => {
 	console.log("renderPins");
 };
 
-export { createMap, renderPins, icon, map, mainPinMarker, startCoordinate };
+export {
+	createMap,
+	renderPins,
+	icon,
+	map,
+	mainPinMarker,
+	startCoordinate,
+	cityCenter,
+	setAddressInput,
+};
