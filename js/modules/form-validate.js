@@ -47,6 +47,7 @@ const validatesForm = () => {
 		price.min = priceValue;
 	}
 	//
+
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
 		price.min = typeRoomsPrices[typeElement.value];
@@ -61,6 +62,12 @@ const validatesForm = () => {
 	});
 
 	typeElement.addEventListener("change", setAttributeMin);
+	// typeElement.addEventListener("change", function () {
+	// 	if (priceValue) {
+	// 		price.placeholder = priceValue;
+	// 		price.min = priceValue;
+	// 	}
+	// });
 
 	//валидирует цену
 	const validPriceMessage = () => {

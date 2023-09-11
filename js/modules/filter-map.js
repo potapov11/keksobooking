@@ -49,7 +49,6 @@ const filterMap = (data) => {
 	// массив filteredData содержит только те элементы, которые соответствуют выбранным фильтрам
 
 	if (filteredData) {
-		console.log(filteredData.length);
 		if (filteredData.length > 10) {
 			filteredData = filteredData.slice(0, 10);
 		}
