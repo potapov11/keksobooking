@@ -45,8 +45,9 @@ const createSlider = () => {
 		const changePrice = () => {
 			priceElement.value = typeRoomsPrices[typeElement.value];
 		};
+		sliderElement.noUiSlider.reset();
 		changePrice();
 	});
 };
 
-export { createSlider };
+export { createSlider, sliderElement };

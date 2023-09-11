@@ -3,6 +3,7 @@ import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
 import { renderPins, cityCenter } from "./create-map.js";
+import { sliderElement } from "./create-slider.js";
 
 const validatesForm = () => {
 	const form = document.querySelector(".ad-form");
@@ -35,6 +36,17 @@ const validatesForm = () => {
 	setInputHandler(timein, timeout);
 	setInputHandler(timeout, timein);
 
+	//
+	let priceValue;
+	price.addEventListener("input", function () {
+		priceValue = price.value;
+	});
+
+	if (priceValue) {
+		price.placeholder = priceValue;
+		price.min = priceValue;
+	}
+	//
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
 		price.min = typeRoomsPrices[typeElement.value];
@@ -125,6 +137,7 @@ const validatesForm = () => {
 					cleansFilterForm();
 					returnsMarker();
 					setAddressInput();
+					sliderElement.noUiSlider.reset();
 				},
 				showError
 			);
@@ -145,6 +158,7 @@ const validatesForm = () => {
 			renderPins(data);
 		});
 		pristine.reset();
+		sliderElement.noUiSlider.reset();
 		setTimeout(function () {
 			setAddressInput();
 		}, 500);

@@ -27,7 +27,7 @@ const filterMap = (data) => {
 	const selectedRooms = document.querySelector("#housing-rooms").value;
 	const selectedGuests = document.querySelector("#housing-guests").value;
 
-	const filteredData = data.filter((item) => {
+	let filteredData = data.filter((item) => {
 		return (
 			(selectedType === "any" || item.offer.type === selectedType) &&
 			(selectedPrice === "any" ||
@@ -49,6 +49,10 @@ const filterMap = (data) => {
 	// массив filteredData содержит только те элементы, которые соответствуют выбранным фильтрам
 
 	if (filteredData) {
+		console.log(filteredData.length);
+		if (filteredData.length > 10) {
+			filteredData = filteredData.slice(0, 10);
+		}
 		for (let i = 0; i < filteredData.length; i++) {
 			const card = renderInfoBlock(filteredData[i]);
 			const lat = data[i].location.lat;

@@ -14,6 +14,7 @@ const escapeKey = (evt) => evt.key === "Escape";
 function closeEsc(evt) {
 	if (escapeKey(evt)) {
 		cloneElement.remove();
+		document.removeEventListener("keydown", closeEsc);
 	}
 }
 
@@ -28,6 +29,7 @@ const showSuccess = () => {
 		//проверяем если елемент есть - удаляем
 		if (cloneElement) {
 			cloneElement.remove();
+			document.removeEventListener("keydown", closeEsc);
 		}
 	});
 };
@@ -47,7 +49,11 @@ const showError = () => {
 	};
 
 	const clickOutside = (evt) => {
-		if (evt.target.closest(".error") || evt.target === errorButton) {
+		if (
+			evt.target.closest(".error") ||
+			evt.target === errorButton ||
+			evt.target.closest(".success")
+		) {
 			cloneElement.remove();
 			document.removeEventListener("keydown", closeEsc);
 			document.removeEventListener("click", clickOutside);

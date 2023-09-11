@@ -1,6 +1,8 @@
 import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
 import { filterMap } from "./filter-map.js";
+import { showError } from "./error-succes-message.js";
+import { getData } from "./get-set-serverdata.js";
 import { debounce } from "./utils.js";
 
 const DEBOUNCE_TIMER = 500;
@@ -65,6 +67,10 @@ const createMap = () => {
 
 	map = L.map(mapElement)
 		.on("load", () => {
+			const data = getData(showError);
+			data.then((data) => {
+				renderPins(data);
+			});
 			unlockForm();
 		})
 		.setView(cityCenter, ZOOM);
@@ -111,6 +117,7 @@ const renderPins = (data) => {
 			marker.bindPopup(card);
 		}
 	}
+	console.log("renderPins");
 };
 
 export {
