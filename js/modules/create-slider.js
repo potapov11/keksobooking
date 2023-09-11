@@ -4,7 +4,23 @@ const sliderElement = document.querySelector(".ad-form__slider");
 const priceElement = document.querySelector("#price");
 const typeElement = document.querySelector("[name='type']");
 const MAX_PRICE = 100000;
-const STEP_NUMBER = 1000;
+const STEP_NUMBER = 1;
+const priceChangeHandler = (evt) => {
+	sliderElement.noUiSlider.updateOptions({
+		range: {
+			min: 0,
+			max: MAX_PRICE,
+		},
+		start: +priceElement.value,
+		step: STEP_NUMBER,
+	});
+
+	const changePrice = () => {
+		priceElement.value = typeRoomsPrices[typeElement.value];
+	};
+	// sliderElement.noUiSlider.reset();
+	changePrice();
+};
 
 const createSlider = () => {
 	noUiSlider.create(sliderElement, {
@@ -27,27 +43,13 @@ const createSlider = () => {
 			},
 		},
 	});
+
 	sliderElement.noUiSlider.on("update", () => {
 		priceElement.value = sliderElement.noUiSlider.get();
 	});
 
-	typeElement.addEventListener("change", (evt) => {
-		priceElement.value = "";
-		sliderElement.noUiSlider.updateOptions({
-			range: {
-				min: 0,
-				max: MAX_PRICE,
-			},
-			start: 0,
-			step: STEP_NUMBER,
-		});
-
-		const changePrice = () => {
-			priceElement.value = typeRoomsPrices[typeElement.value];
-		};
-		sliderElement.noUiSlider.reset();
-		changePrice();
-	});
+	typeElement.addEventListener("change", priceChangeHandler);
+	priceElement.addEventListener("change", priceChangeHandler);
 };
 
 export { createSlider, sliderElement };

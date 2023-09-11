@@ -36,18 +36,6 @@ const validatesForm = () => {
 	setInputHandler(timein, timeout);
 	setInputHandler(timeout, timein);
 
-	//
-	let priceValue;
-	price.addEventListener("input", function () {
-		priceValue = price.value;
-	});
-
-	if (priceValue) {
-		price.placeholder = priceValue;
-		price.min = priceValue;
-	}
-	//
-
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
 		price.min = typeRoomsPrices[typeElement.value];
@@ -61,13 +49,10 @@ const validatesForm = () => {
 		errorTextTag: "span",
 	});
 
-	typeElement.addEventListener("change", setAttributeMin);
-	// typeElement.addEventListener("change", function () {
-	// 	if (priceValue) {
-	// 		price.placeholder = priceValue;
-	// 		price.min = priceValue;
-	// 	}
-	// });
+	typeElement.addEventListener("change", () => {
+		setAttributeMin();
+		pristine.validate();
+	});
 
 	//валидирует цену
 	const validPriceMessage = () => {
@@ -144,7 +129,6 @@ const validatesForm = () => {
 					cleansFilterForm();
 					returnsMarker();
 					setAddressInput();
-					sliderElement.noUiSlider.reset();
 				},
 				showError
 			);
@@ -160,12 +144,10 @@ const validatesForm = () => {
 		setAddressInput();
 		cleansFilterForm();
 		returnsMarker();
-		const data = getData();
-		data.then((data) => {
+		getData().then((data) => {
 			renderPins(data);
 		});
 		pristine.reset();
-		sliderElement.noUiSlider.reset();
 		setTimeout(function () {
 			setAddressInput();
 		}, 500);
