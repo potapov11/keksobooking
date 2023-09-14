@@ -18,13 +18,13 @@ const validatesForm = () => {
 	const formReset = form.querySelector(".ad-form__reset");
 	const formBtnSend = form.querySelector(".ad-form__submit");
 
-	const avatarElement = form.querySelector('.ad-form-header__input');
-  const avatarPreviewElement = form.querySelector('.ad-form-header__preview img');
-  const housingPhotoElement = form.querySelector('#images');
-  const housingPreviewElement = form.querySelector('.ad-form__photo');
+	const avatarImage = form.querySelector('.ad-form-header__input');
+  const avatarPreviewImage = form.querySelector('.ad-form-header__preview img');
+  const housingPhotoImage = form.querySelector('#images');
+  const housingPreviewImage = form.querySelector('.ad-form__photo');
 
-	const resetAvatar = initImageShow(avatarElement, avatarPreviewElement);
-const resetHouseImage = initImageShow(housingPhotoElement, housingPreviewElement);
+	const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
+const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
 	const ROOM_GUESTS = {
 		1: ["1"],
