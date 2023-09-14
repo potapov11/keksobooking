@@ -1,11 +1,12 @@
+const body = document.querySelector("body");
 const templateSuccess = document
 	.querySelector("#success")
 	.content.querySelector(".success");
-let cloneElement;
-const body = document.querySelector("body");
+
 const templateError = document
 	.querySelector("#error")
 	.content.querySelector(".error");
+let cloneElement;
 
 //Нажатие на кнопку "Escape".
 const escapeKey = (evt) => evt.key === "Escape";
@@ -22,9 +23,9 @@ const showSuccess = () => {
 	cloneElement = templateSuccess.cloneNode(true);
 
 	body.append(cloneElement);
-	//очищаем поля форм
 
 	document.addEventListener("keydown", closeEsc);
+
 	cloneElement.addEventListener("click", () => {
 		//проверяем если елемент есть - удаляем
 		if (cloneElement) {
@@ -35,18 +36,11 @@ const showSuccess = () => {
 };
 
 const showError = () => {
+
 	cloneElement = templateError.cloneNode(true);
 	const errorButton = cloneElement.querySelector(".error__button");
 
 	body.append(cloneElement);
-
-	const closeEsc = (evt) => {
-		if (evt.key === "Escape") {
-			cloneElement.remove();
-			document.removeEventListener("keydown", closeEsc);
-			document.removeEventListener("click", clickOutside);
-		}
-	};
 
 	const clickOutside = (evt) => {
 		if (
@@ -54,14 +48,15 @@ const showError = () => {
 			evt.target === errorButton ||
 			evt.target.closest(".success")
 		) {
+			console.log(evt.target);
 			cloneElement.remove();
 			document.removeEventListener("keydown", closeEsc);
 			document.removeEventListener("click", clickOutside);
 		}
 	};
 
-	document.addEventListener("keydown", closeEsc);
-	document.addEventListener("click", clickOutside);
+	cloneElement.addEventListener("keydown", closeEsc);
+	cloneElement.addEventListener("click", clickOutside);
 };
 
 export { showSuccess, showError };

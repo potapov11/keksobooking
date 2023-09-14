@@ -24,6 +24,15 @@ const iconConfig = {
 	anchorX: 26,
 	anchorY: 52,
 };
+//ДопИконка
+const miniIconConfig = {
+	url: "./img/pin.svg",
+	width: 40,
+	height: 40,
+	anchorX: 20,
+	anchorY: 40,
+};
+
 const mainPinIcon = L.icon({
 	iconUrl: iconConfig.url,
 	iconSize: [iconConfig.width, iconConfig.height],
@@ -37,15 +46,6 @@ const mainPinMarker = L.marker(startCoordinate, {
 	draggable: true,
 	icon: mainPinIcon,
 });
-
-//ДопИконка
-const miniIconConfig = {
-	url: "./img/pin.svg",
-	width: 40,
-	height: 40,
-	anchorX: 20,
-	anchorY: 40,
-};
 
 const icon = L.icon({
 	iconUrl: miniIconConfig.url,
@@ -117,7 +117,6 @@ const renderPins = (data) => {
 			marker.bindPopup(card);
 		}
 	}
-	console.log("renderPins");
 };
 
 export {

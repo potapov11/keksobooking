@@ -3,7 +3,6 @@ import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
 import { renderPins, cityCenter } from "./create-map.js";
-import { sliderElement } from "./create-slider.js";
 
 const validatesForm = () => {
 	const form = document.querySelector(".ad-form");

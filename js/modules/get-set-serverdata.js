@@ -1,5 +1,3 @@
-import { showError } from "./error-succes-message.js";
-
 const getData = (showError) => {
 	return fetch("https://28.javascript.pages.academy/keksobooking/data")
 		.then((response) => {
