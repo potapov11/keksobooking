@@ -3,6 +3,7 @@ import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
 import { renderPins, cityCenter } from "./create-map.js";
+import { initImageShow } from './images-checking.js'
 
 const validatesForm = () => {
 	const form = document.querySelector(".ad-form");
@@ -16,6 +17,14 @@ const validatesForm = () => {
 	const address = form.querySelector("#address");
 	const formReset = form.querySelector(".ad-form__reset");
 	const formBtnSend = form.querySelector(".ad-form__submit");
+
+	const avatarElement = form.querySelector('.ad-form-header__input');
+  const avatarPreviewElement = form.querySelector('.ad-form-header__preview img');
+  const housingPhotoElement = form.querySelector('#images');
+  const housingPreviewElement = form.querySelector('.ad-form__photo');
+
+	const resetAvatar = initImageShow(avatarElement, avatarPreviewElement);
+const resetHouseImage = initImageShow(housingPhotoElement, housingPreviewElement);
 
 	const ROOM_GUESTS = {
 		1: ["1"],
@@ -146,6 +155,10 @@ const validatesForm = () => {
 		getData().then((data) => {
 			renderPins(data);
 		});
+
+		resetAvatar();
+    resetHouseImage();
+
 		pristine.reset();
 		setTimeout(function () {
 			setAddressInput();
