@@ -4,9 +4,9 @@ import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
 import { renderPins, cityCenter } from "./create-map.js";
 import { initImageShow } from './images-checking.js'
+import { resetSlider } from './create-slider.js'
 
-const validatesForm = () => {
-	const form = document.querySelector(".ad-form");
+const form = document.querySelector(".ad-form");
 	const roomsElement = form.querySelector('[name="rooms"]');
 	const capacityElement = form.querySelector('[name="capacity"]');
 	const typeElement = form.querySelector('[name="type"]');
@@ -17,15 +17,11 @@ const validatesForm = () => {
 	const address = form.querySelector("#address");
 	const formReset = form.querySelector(".ad-form__reset");
 	const formBtnSend = form.querySelector(".ad-form__submit");
-
 	const avatarImage = form.querySelector('.ad-form-header__input');
   const avatarPreviewImage = form.querySelector('.ad-form-header__preview img');
   const housingPhotoImage = form.querySelector('#images');
   const housingPreviewImage = form.querySelector('.ad-form__photo');
-
-	const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
-const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
-
+	const MAX_PRICE = 100000;
 	const ROOM_GUESTS = {
 		1: ["1"],
 		2: ["1", "2"],
@@ -33,7 +29,10 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 		100: ["0"],
 	};
 
-	const MAX_PRICE = 100000;
+	const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
+const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
+
+const validatesForm = () => {
 
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
@@ -46,7 +45,6 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
 	const setAttributeMin = () => {
 		price.placeholder = typeRoomsPrices[typeElement.value];
-		price.min = typeRoomsPrices[typeElement.value];
 	};
 	setAttributeMin();
 
@@ -66,8 +64,9 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 	const validPriceMessage = () => {
 		if (Number(price.value) >= MAX_PRICE) {
 			return `Максимальная цена ${MAX_PRICE}`;
+		} else {
+			return `Минимальная цена ${price.placeholder}`;
 		}
-		return `Минимальная цена ${price.placeholder}`;
 	};
 
 	const validateTitle = (value) => {
@@ -75,7 +74,7 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 	};
 
 	const validatePrice = (value) => {
-		return Number(value) >= Number(price.min) && Number(value) <= 100000;
+		return Number(value) >= Number(price.placeholder) && Number(value) <= 100000;
 	};
 
 	const validateRooms = () => {
@@ -118,7 +117,7 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 		pristine.validate(roomsElement);
 	});
 
-	price.addEventListener("change", () => {
+	price.addEventListener("input", () => {
 		pristine.validate();
 	});
 
@@ -158,7 +157,7 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
 		resetAvatar();
     resetHouseImage();
-
+		resetSlider();
 		pristine.reset();
 		setTimeout(function () {
 			setAddressInput();

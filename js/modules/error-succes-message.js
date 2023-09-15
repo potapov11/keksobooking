@@ -48,7 +48,6 @@ const showError = () => {
 			evt.target === errorButton ||
 			evt.target.closest(".success")
 		) {
-			console.log(evt.target);
 			cloneElement.remove();
 			document.removeEventListener("keydown", closeEsc);
 			document.removeEventListener("click", clickOutside);

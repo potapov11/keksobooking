@@ -4,13 +4,16 @@ const sliderElement = document.querySelector(".ad-form__slider");
 const priceElement = document.querySelector("#price");
 const typeElement = document.querySelector("[name='type']");
 const MAX_PRICE = 100000;
+const MIN_PRICE = 0;
 const STEP_NUMBER = 1;
+
 const priceChangeHandler = (evt) => {
 	sliderElement.noUiSlider.updateOptions({
 		range: {
-			min: 0,
+			min: MIN_PRICE,
 			max: MAX_PRICE,
 		},
+		// start: 0,
 		start: +priceElement.value,
 		step: STEP_NUMBER,
 	});
@@ -43,12 +46,20 @@ const createSlider = () => {
 		},
 	});
 
-	sliderElement.noUiSlider.on("update", () => {
-		priceElement.value = sliderElement.noUiSlider.get();
-	});
-
-	typeElement.addEventListener("change", priceChangeHandler);
-	priceElement.addEventListener("change", priceChangeHandler);
+	document.querySelector('.noUi-handle').addEventListener('mousedown', () => {
+		priceElement.value = 0;
+		sliderElement.noUiSlider.on("update", () => {
+			priceElement.value = sliderElement.noUiSlider.get();
+		});
+	})
+	
+	if(!priceElement) {
+		typeElement.addEventListener("change", priceChangeHandler);
+	}
 };
 
-export { createSlider, sliderElement };
+const resetSlider = () => {
+  sliderElement.noUiSlider.reset();
+};
+
+export { createSlider, sliderElement, resetSlider };

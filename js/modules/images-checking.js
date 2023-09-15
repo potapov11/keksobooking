@@ -4,7 +4,6 @@ const initImageShow = (inputItem, previewItem) => {
   const previewSrc = previewItem.src;
 
   inputItem.addEventListener('change', () => {
-		console.log(inputItem.files)
     const file = inputItem.files[0];
     const fileName = file.name.toLowerCase();
     const match = IMAGES_TYPES.some((name) => fileName.endsWith(name));
