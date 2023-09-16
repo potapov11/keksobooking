@@ -6,6 +6,7 @@ import { getData } from "./get-set-serverdata.js";
 import { debounce } from "./utils.js";
 
 const DEBOUNCE_TIMER = 500;
+const form = document.querySelector(".map__filters");
 const adressInput = document.querySelector("#address");
 const mapElement = document.querySelector("#map-canvas");
 const TILE_LAYER = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -69,6 +70,7 @@ const createMap = () => {
 		.on("load", () => {
 			const data = getData(showError);
 			data.then((data) => {
+				console.log(data);
 				renderPins(data);
 			});
 			unlockForm();
@@ -91,18 +93,30 @@ const createMap = () => {
 const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
-		const form = document.querySelector(".map__filters");
+		// const form = document.querySelector(".map__filters");
+
+		const dataSlice = data.slice(0, 10);
+		console.log(dataSlice);
 
 		form.addEventListener(
 			"change",
-			debounce(() => filterMap(data), DEBOUNCE_TIMER)
+			debounce(() => filterMap(dataSlice), DEBOUNCE_TIMER)
+			// console.log(dataSlice)
 		);
 
-		for (let i = 0; i < 10; i++) {
-			const card = renderInfoBlock(data[i]);
+		// const dataSlice = data.slice(0, 10);
+		// console.log(dataSlice);
 
-			const lat = data[i].location.lat;
-			const lng = data[i].location.lng;
+		// for (let i = 0; i < 10; i++) {
+		for (let i = 0; i < dataSlice.length; i++) {
+			// const card = renderInfoBlock(data[i]);
+			const card = renderInfoBlock(dataSlice[i]);
+			// console.log(data[i]);
+
+			const lat = dataSlice[i].location.lat;
+			const lng = dataSlice[i].location.lng;
+			// const lat = data[i].location.lat;
+			// const lng = data[i].location.lng;
 			const marker = L.marker(
 				{
 					lat,

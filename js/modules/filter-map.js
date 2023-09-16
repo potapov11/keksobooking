@@ -51,6 +51,7 @@ const filterMap = (data) => {
 	if (filteredData) {
 		if (filteredData.length > 10) {
 			filteredData = filteredData.slice(0, 10);
+			console.log(filteredData);
 		}
 		for (let i = 0; i < filteredData.length; i++) {
 			const card = renderInfoBlock(filteredData[i]);
