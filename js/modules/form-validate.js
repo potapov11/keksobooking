@@ -3,37 +3,40 @@ import { showSuccess, showError } from "./error-succes-message.js";
 import { sendData } from "./get-set-serverdata.js";
 import { getData } from "./get-set-serverdata.js";
 import { renderPins, cityCenter } from "./create-map.js";
-import { initImageShow } from './images-checking.js'
-import { resetSlider } from './create-slider.js'
+import { initImageShow } from "./images-checking.js";
+import { resetSlider } from "./create-slider.js";
 
 const form = document.querySelector(".ad-form");
-	const roomsElement = form.querySelector('[name="rooms"]');
-	const capacityElement = form.querySelector('[name="capacity"]');
-	const typeElement = form.querySelector('[name="type"]');
-	const price = form.querySelector("#price");
-	const title = form.querySelector("#title");
-	const timein = form.querySelector("#timein");
-	const timeout = form.querySelector("#timeout");
-	const address = form.querySelector("#address");
-	const formReset = form.querySelector(".ad-form__reset");
-	const formBtnSend = form.querySelector(".ad-form__submit");
-	const avatarImage = form.querySelector('.ad-form-header__input');
-  const avatarPreviewImage = form.querySelector('.ad-form-header__preview img');
-  const housingPhotoImage = form.querySelector('#images');
-  const housingPreviewImage = form.querySelector('.ad-form__photo');
-	const MAX_PRICE = 100000;
-	const ROOM_GUESTS = {
-		1: ["1"],
-		2: ["1", "2"],
-		3: ["1", "2", "3"],
-		100: ["0"],
-	};
+const roomsElement = form.querySelector('[name="rooms"]');
+const capacityElement = form.querySelector('[name="capacity"]');
+const typeElement = form.querySelector('[name="type"]');
+const price = form.querySelector("#price");
+const title = form.querySelector("#title");
+const timein = form.querySelector("#timein");
+const timeout = form.querySelector("#timeout");
+const address = form.querySelector("#address");
+const formReset = form.querySelector(".ad-form__reset");
+const formBtnSend = form.querySelector(".ad-form__submit");
+const avatarImage = form.querySelector(".ad-form-header__input");
+const avatarPreviewImage = form.querySelector(".ad-form-header__preview img");
+const housingPhotoImage = form.querySelector("#images");
+const housingPreviewImage = form.querySelector(".ad-form__photo");
+const MAX_PRICE = 100000;
+const ROOM_GUESTS = {
+	1: ["1"],
+	2: ["1", "2"],
+	3: ["1", "2", "3"],
+	100: ["0"],
+};
 
-	const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
+formBtnSend.addEventListener("click", () => {
+	console.log("click-btn");
+});
+
+const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
 const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
 const validatesForm = () => {
-
 	const setInputHandler = (timeElementIn, timeElementOut) => {
 		timeElementIn.addEventListener("change", function () {
 			timeElementOut.value = timeElementIn.value;
@@ -74,7 +77,9 @@ const validatesForm = () => {
 	};
 
 	const validatePrice = (value) => {
-		return Number(value) >= Number(price.placeholder) && Number(value) <= 100000;
+		return (
+			Number(value) >= Number(price.placeholder) && Number(value) <= 100000
+		);
 	};
 
 	const validateRooms = () => {
@@ -136,8 +141,13 @@ const validatesForm = () => {
 					cleansFilterForm();
 					returnsMarker();
 					setAddressInput();
+					setAttributeMin();
+					resetSlider();
 				},
-				showError
+				() => {
+					showError();
+					formBtnSend.removeAttribute("disabled");
+				}
 			);
 		}
 	});
@@ -156,7 +166,7 @@ const validatesForm = () => {
 		});
 
 		resetAvatar();
-    resetHouseImage();
+		resetHouseImage();
 		resetSlider();
 		pristine.reset();
 		setTimeout(function () {
