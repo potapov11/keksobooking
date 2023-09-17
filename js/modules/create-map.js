@@ -95,10 +95,13 @@ const renderPins = (data) => {
 
 		const dataSlice = data.slice(0, 10);
 
-		form.addEventListener(
-			"change",
-			debounce(() => filterMap(dataSlice), DEBOUNCE_TIMER)
-		);
+		const formDebounceHandler = () => {
+			debounce(() => {
+				filterMap(dataSlice);
+			}, DEBOUNCE_TIMER)();
+		};
+
+		form.addEventListener("change", formDebounceHandler);
 
 		for (let i = 0; i < dataSlice.length; i++) {
 			const card = renderInfoBlock(dataSlice[i]);
