@@ -34,9 +34,10 @@ const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
 const validatesForm = () => {
 	const setInputHandler = (timeElementIn, timeElementOut) => {
-		timeElementIn.addEventListener("change", function () {
+		const timeElementOutValueHandler = () => {
 			timeElementOut.value = timeElementIn.value;
-		});
+		};
+		timeElementIn.addEventListener("change", timeElementOutValueHandler);
 	};
 
 	setInputHandler(timein, timeout);
@@ -54,10 +55,12 @@ const validatesForm = () => {
 		errorTextTag: "span",
 	});
 
-	typeElement.addEventListener("change", () => {
+	const typeElementAddFunctionHandler = () => {
 		setAttributeMin();
 		pristine.validate();
-	});
+	};
+
+	typeElement.addEventListener("change", typeElementAddFunctionHandler);
 
 	//валидирует цену
 	const validPriceMessage = () => {
@@ -114,13 +117,16 @@ const validatesForm = () => {
 
 	pristine.addValidator(address, validateAddress, "Пожалуйста заполните адрес");
 
-	capacityElement.addEventListener("change", () => {
-		pristine.validate(roomsElement);
-	});
+	const addPristineValidateHandler = (elem) => {
+		pristine.validate(elem);
+	};
 
-	price.addEventListener("input", () => {
-		pristine.validate();
-	});
+	capacityElement.addEventListener(
+		"change",
+		addPristineValidateHandler(roomsElement)
+	);
+
+	price.addEventListener("input", addPristineValidateHandler);
 
 	form.addEventListener("submit", (evt) => {
 		evt.preventDefault();

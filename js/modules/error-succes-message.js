@@ -26,17 +26,16 @@ const showSuccess = () => {
 
 	document.addEventListener("keydown", closeEsc);
 
-	cloneElement.addEventListener("click", () => {
-		//проверяем если елемент есть - удаляем
+	const cloneElementRemoveHandler = () => {
 		if (cloneElement) {
 			cloneElement.remove();
 			document.removeEventListener("keydown", closeEsc);
 		}
-	});
+	};
+
+	cloneElement.addEventListener("click", cloneElementRemoveHandler);
 };
-
 const showError = () => {
-
 	cloneElement = templateError.cloneNode(true);
 	const errorButton = cloneElement.querySelector(".error__button");
 
