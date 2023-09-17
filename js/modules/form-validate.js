@@ -29,10 +29,6 @@ const ROOM_GUESTS = {
 	100: ["0"],
 };
 
-formBtnSend.addEventListener("click", () => {
-	console.log("click-btn");
-});
-
 const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
 const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
 
@@ -143,6 +139,9 @@ const validatesForm = () => {
 					setAddressInput();
 					setAttributeMin();
 					resetSlider();
+					getData().then((data) => {
+						renderPins(data);
+					});
 				},
 				() => {
 					showError();

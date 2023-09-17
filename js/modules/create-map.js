@@ -70,7 +70,6 @@ const createMap = () => {
 		.on("load", () => {
 			const data = getData(showError);
 			data.then((data) => {
-				console.log(data);
 				renderPins(data);
 			});
 			unlockForm();
@@ -93,21 +92,14 @@ const createMap = () => {
 const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
-		// const form = document.querySelector(".map__filters");
 
 		const dataSlice = data.slice(0, 10);
-		console.log(dataSlice);
 
 		form.addEventListener(
 			"change",
 			debounce(() => filterMap(dataSlice), DEBOUNCE_TIMER)
-			// console.log(dataSlice)
 		);
 
-		// const dataSlice = data.slice(0, 10);
-		// console.log(dataSlice);
-
-		// for (let i = 0; i < 10; i++) {
 		for (let i = 0; i < dataSlice.length; i++) {
 			// const card = renderInfoBlock(data[i]);
 			const card = renderInfoBlock(dataSlice[i]);

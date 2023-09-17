@@ -46,17 +46,14 @@ const filterMap = (data) => {
 		);
 	});
 
-	// массив filteredData содержит только те элементы, которые соответствуют выбранным фильтрам
-
 	if (filteredData) {
 		if (filteredData.length > 10) {
 			filteredData = filteredData.slice(0, 10);
-			console.log(filteredData);
 		}
 		for (let i = 0; i < filteredData.length; i++) {
 			const card = renderInfoBlock(filteredData[i]);
-			const lat = data[i].location.lat;
-			const lng = data[i].location.lng;
+			const lat = filteredData[i].location.lat;
+			const lng = filteredData[i].location.lng;
 			const marker = L.marker(
 				{
 					lat,

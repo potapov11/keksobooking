@@ -46,9 +46,9 @@ const createSlider = () => {
 	});
 
 	// priceElement.value = 0;
+	
 	sliderElement.noUiSlider.on("slide", () => {
 		priceElement.value = 0;
-
 		priceElement.value = sliderElement.noUiSlider.get();
 	});
 
