@@ -101,14 +101,10 @@ const renderPins = (data) => {
 		);
 
 		for (let i = 0; i < dataSlice.length; i++) {
-			// const card = renderInfoBlock(data[i]);
 			const card = renderInfoBlock(dataSlice[i]);
-			// console.log(data[i]);
 
 			const lat = dataSlice[i].location.lat;
 			const lng = dataSlice[i].location.lng;
-			// const lat = data[i].location.lat;
-			// const lng = data[i].location.lng;
 			const marker = L.marker(
 				{
 					lat,
