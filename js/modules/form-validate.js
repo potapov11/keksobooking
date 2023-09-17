@@ -162,7 +162,7 @@ const validatesForm = () => {
 			cityCenter.lat.toFixed(5) + ",  " + cityCenter.lng.toFixed(5);
 	};
 
-	formReset.addEventListener("click", function () {
+	formReset.addEventListener("click", () => {
 		setAddressInput();
 		cleansFilterForm();
 		returnsMarker();
