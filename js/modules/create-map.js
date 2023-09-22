@@ -95,9 +95,12 @@ const renderPins = (data) => {
 
 		const dataSlice = data.slice(0, 10);
 
+		dataSlice.forEach((i) => console.log(i.offer.type));
+
 		const formDebounceHandler = () => {
 			debounce(() => {
-				filterMap(dataSlice);
+				filterMap(data);
+				// filterMap(dataSlice);
 			}, DEBOUNCE_TIMER)();
 		};
 
