@@ -6,9 +6,6 @@ import { getData } from "./get-set-serverdata.js";
 import { debounce } from "./utils.js";
 
 const DEBOUNCE_TIMER = 500;
-const form = document.querySelector(".map__filters");
-const adressInput = document.querySelector("#address");
-const mapElement = document.querySelector("#map-canvas");
 const TILE_LAYER = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const COPYRIGHT =
 	'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -17,6 +14,7 @@ const cityCenter = {
 	lat: 35.67409,
 	lng: 139.74321,
 };
+
 //иконка
 const iconConfig = {
 	url: "./img/main-pin.svg",
@@ -53,6 +51,10 @@ const icon = L.icon({
 	iconSize: [miniIconConfig.width, miniIconConfig.height],
 	iconAnchor: [miniIconConfig.anchorX, miniIconConfig.anchorY],
 });
+
+const form = document.querySelector(".map__filters");
+const adressInput = document.querySelector("#address");
+const mapElement = document.querySelector("#map-canvas");
 
 let map;
 
