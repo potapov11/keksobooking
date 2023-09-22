@@ -145,6 +145,7 @@ const validatesForm = () => {
 					setAddressInput();
 					setAttributeMin();
 					resetSlider();
+					resetAvatar();
 					getData().then((data) => {
 						renderPins(data);
 					});
