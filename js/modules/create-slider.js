@@ -45,26 +45,10 @@ const createSlider = () => {
 		},
 	});
 
-	// priceElement.value = 0;
-	
 	sliderElement.noUiSlider.on("slide", () => {
 		priceElement.value = 0;
 		priceElement.value = sliderElement.noUiSlider.get();
 	});
-
-	// const sliderMouseDown = () => {
-	// 	priceElement.value = 0;
-	// 		sliderElement.noUiSlider.on("update", () => {
-	// 		priceElement.value = sliderElement.noUiSlider.get();
-	// 	});
-	// 	document
-	// 		.querySelector(".noUi-handle")
-	// 		.removeEventListener("mousedown", sliderMouseDown);
-	// };
-
-	// document
-	// 	.querySelector(".noUi-handle")
-	// 	.addEventListener("mousedown", sliderMouseDown);
 
 	if (!priceElement) {
 		typeElement.addEventListener("change", priceChangeHandler);
