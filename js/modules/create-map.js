@@ -2,7 +2,7 @@ import { unlockForm, unlockFilters, blockForm } from "./block-unlock-form.js";
 import { renderInfoBlock } from "./render-info-block.js";
 import { filterMap } from "./filter-map.js";
 import { showError } from "./error-succes-message.js";
-import { getData } from "./get-set-serverdata.js";
+import { getData } from "./get-set-server-data.js";
 import { debounce } from "./utils.js";
 
 const DEBOUNCE_TIMER = 500;
@@ -86,7 +86,7 @@ const createMap = () => {
 	mainPinMarker.on("drag", (evt) => {
 		const myLat = evt.target.getLatLng().lat;
 		const myLng = evt.target.getLatLng().lng;
-		adressInput.value = myLat.toFixed(5) + "   " + myLng.toFixed(5);
+		adressInput.value = myLat.toFixed(5) + ",   " + myLng.toFixed(5);
 	});
 };
 
@@ -97,14 +97,9 @@ const renderPins = (data) => {
 
 		const dataSlice = data.slice(0, 10);
 
-		dataSlice.forEach((i) => console.log(i.offer.type));
-
-		const formDebounceHandler = () => {
-			debounce(() => {
-				filterMap(data);
-				// filterMap(dataSlice);
-			}, DEBOUNCE_TIMER)();
-		};
+		const formDebounceHandler = debounce(() => {
+			filterMap(data);
+		}, DEBOUNCE_TIMER);
 
 		form.addEventListener("change", formDebounceHandler);
 

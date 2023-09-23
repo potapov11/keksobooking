@@ -1,11 +1,18 @@
 import { typeRoomsPrices, cleansFilterForm, returnsMarker } from "./utils.js";
 import { showSuccess, showError } from "./error-succes-message.js";
-import { sendData } from "./get-set-serverdata.js";
-import { getData } from "./get-set-serverdata.js";
+import { sendData } from "./get-set-server-data.js";
+import { getData } from "./get-set-server-data.js";
 import { renderPins, cityCenter } from "./create-map.js";
 import { initImageShow } from "./images-checking.js";
 import { resetSlider } from "./create-slider.js";
 
+const MAX_PRICE = 100000;
+const ROOM_GUESTS = {
+	1: ["1"],
+	2: ["1", "2"],
+	3: ["1", "2", "3"],
+	100: ["0"],
+};
 const form = document.querySelector(".ad-form");
 const roomsElement = form.querySelector('[name="rooms"]');
 const capacityElement = form.querySelector('[name="capacity"]');
@@ -21,13 +28,6 @@ const avatarImage = form.querySelector(".ad-form-header__input");
 const avatarPreviewImage = form.querySelector(".ad-form-header__preview img");
 const housingPhotoImage = form.querySelector("#images");
 const housingPreviewImage = form.querySelector(".ad-form__photo");
-const MAX_PRICE = 100000;
-const ROOM_GUESTS = {
-	1: ["1"],
-	2: ["1", "2"],
-	3: ["1", "2", "3"],
-	100: ["0"],
-};
 
 const resetAvatar = initImageShow(avatarImage, avatarPreviewImage);
 const resetHouseImage = initImageShow(housingPhotoImage, housingPreviewImage);
@@ -145,6 +145,7 @@ const validatesForm = () => {
 					setAddressInput();
 					setAttributeMin();
 					resetSlider();
+					resetHouseImage();
 					resetAvatar();
 					getData().then((data) => {
 						renderPins(data);
@@ -164,17 +165,19 @@ const validatesForm = () => {
 	};
 
 	formReset.addEventListener("click", () => {
+		form.reset();
 		setAddressInput();
 		cleansFilterForm();
 		returnsMarker();
 		getData().then((data) => {
 			renderPins(data);
 		});
-
+		setAttributeMin();
 		resetAvatar();
 		resetHouseImage();
 		resetSlider();
 		pristine.reset();
+
 		setTimeout(function () {
 			setAddressInput();
 		}, 500);

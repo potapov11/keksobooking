@@ -2,6 +2,7 @@ import { renderInfoBlock } from "./render-info-block.js";
 import { icon, map } from "./create-map.js";
 
 const filterMap = (data) => {
+	const popupOpened = document.querySelector(".leaflet-popup");
 	const mapMarkers = document.querySelectorAll(".leaflet-marker-icon");
 	mapMarkers.forEach((item) => {
 		if (item.classList.length === 3) {
@@ -10,7 +11,6 @@ const filterMap = (data) => {
 	});
 
 	//Удаляем открытый попап
-	const popupOpened = document.querySelector(".leaflet-popup");
 	if (popupOpened) {
 		popupOpened.remove();
 	}
@@ -46,14 +46,11 @@ const filterMap = (data) => {
 		);
 	});
 
-	console.log(filteredData);
-
 	if (filteredData) {
 		if (filteredData.length > 10) {
 			filteredData = filteredData.slice(0, 10);
 		}
 		for (let i = 0; i < filteredData.length; i++) {
-			console.log(filteredData[i]);
 			const card = renderInfoBlock(filteredData[i]);
 			const lat = filteredData[i].location.lat;
 			const lng = filteredData[i].location.lng;

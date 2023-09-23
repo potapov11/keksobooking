@@ -1,11 +1,11 @@
 import { typeRoomsPrices } from "./utils.js";
 
-const sliderElement = document.querySelector(".ad-form__slider");
-const priceElement = document.querySelector("#price");
-const typeElement = document.querySelector("[name='type']");
 const MAX_PRICE = 100000;
 const MIN_PRICE = 0;
 const STEP_NUMBER = 1;
+const sliderElement = document.querySelector(".ad-form__slider");
+const priceElement = document.querySelector("#price");
+const typeElement = document.querySelector("[name='type']");
 
 const priceChangeHandler = (evt) => {
 	sliderElement.noUiSlider.updateOptions({

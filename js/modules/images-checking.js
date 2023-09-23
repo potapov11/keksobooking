@@ -1,7 +1,6 @@
 const IMAGES_TYPES = ["jpg", "jpeg", "png"];
 
 const initImageShow = (inputItem, previewItem) => {
-	// const previewSrc = previewItem.src;
 	const previewSrc = "../img/muffin-grey.svg";
 
 	inputItem.addEventListener("change", () => {
