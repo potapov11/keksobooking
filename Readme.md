@@ -9,8 +9,9 @@ https://potapov11.github.io/keksobooking/
   <img src="https://github.com/devicons/devicon/blob/master/icons/sass/sass-original.svg" title="JavaScript" alt="sass" width="40" height="40"/>&nbsp;
 </div>
 
-Проект демонстрирующий навыки работы с углубленным понимаем языка Java Script.
-Работа с асинхронным кодом - внешними Api, Promise.
-Валидация, фильтр и отправка данных формы.
-Использование сторонних библиотек - noUiSlider и Leaflet.
-Dom Api - фильтрация и рендеринг входящих данных.
+<p>Проект демонстрирующий навыки работы с углубленным понимаем языка Java Script.</p>&nbsp;
+<p>Работа с асинхронным кодом - внешними Api, Promise.</p>&nbsp;
+<p>Валидация, фильтр и отправка данных формы.</p>&nbsp;
+<p>Использование сторонних библиотек - noUiSlider и Leaflet.</p>&nbsp;
+<p>Dom Api - фильтрация и рендеринг входящих данных</p>&nbsp;
+
