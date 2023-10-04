@@ -10,6 +10,7 @@ https://potapov11.github.io/keksobooking/
 </div>
 
 <h2>Небольшое видео-демо</h2>&nbsp;
+
 ![keksGif](https://github.com/potapov11/keksobooking/assets/57190897/7897715a-5a4d-4f6d-9676-586392e44f84)
 
 
