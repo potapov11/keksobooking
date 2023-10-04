@@ -95,7 +95,7 @@ const renderPins = (data) => {
 	if (data) {
 		unlockFilters();
 
-		const dataSlice = data.slice(0, 10);
+		const dataSlice = data.slice(0, 40);
 
 		const formDebounceHandler = debounce(() => {
 			filterMap(data);

@@ -47,9 +47,9 @@ const filterMap = (data) => {
 	});
 
 	if (filteredData) {
-		if (filteredData.length > 10) {
-			filteredData = filteredData.slice(0, 10);
-		}
+		// if (filteredData.length > 10) {
+		// 	filteredData = filteredData.slice(0, 10);
+		// }
 		for (let i = 0; i < filteredData.length; i++) {
 			const card = renderInfoBlock(filteredData[i]);
 			const lat = filteredData[i].location.lat;
