@@ -1,8 +1,8 @@
-const GET_DATA = "https://28.javascript.pages.academy/keksobooking/data";
-const SET_DATA = "https://28.javascript.pages.academy/keksobooking";
+const GET_DATA_URL = "https://28.javascript.pages.academy/keksobooking/data";
+const SET_DATA_URL = "https://28.javascript.pages.academy/keksobooking";
 
 const getData = (showError) => {
-	return fetch(GET_DATA)
+	return fetch(GET_DATA_URL)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
@@ -21,7 +21,7 @@ const getData = (showError) => {
 };
 
 const sendData = (data, success, error) => {
-	fetch(SET_DATA, {
+	fetch(SET_DATA_URL, {
 		method: "POST",
 		body: data,
 		type: "multipart/form-data",

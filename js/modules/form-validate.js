@@ -7,6 +7,7 @@ import { initImageShow } from "./images-checking.js";
 import { resetSlider } from "./create-slider.js";
 
 const MAX_PRICE = 100000;
+console.log(MAX_PRICE);
 const ROOM_GUESTS = {
 	1: ["1"],
 	2: ["1", "2"],
