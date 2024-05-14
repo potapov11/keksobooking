@@ -1,5 +1,5 @@
-const GET_DATA_URL = "https://28.javascript.pages.academy/keksobooking/data";
-const SET_DATA_URL = "https://28.javascript.pages.academy/keksobooking";
+const GET_DATA_URL = "https://30.javascript.pages.academy/keksobooking/data";
+const SET_DATA_URL = "https://30.javascript.pages.academy/keksobooking";
 
 const getData = (showError) => {
 	return fetch(GET_DATA_URL)
