@@ -1,4 +1,4 @@
-https://potapov11.github.io/keksobooking/
+[https://potapov11.github.io/keksobooking/](https://search-flat-project.vercel.app/)
 <div>
 	<p>Стек проекта - JS, HTML, CSS, БЭМ, SCSS</p>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
