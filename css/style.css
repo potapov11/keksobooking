@@ -47,6 +47,10 @@ body {
 	font-size: 16px;
 
 	background-color: #f0f0ea;
+	background-image: url("../img/japan-background.avif");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position-x: -300px;
 }
 
 fieldset {
@@ -678,9 +682,14 @@ fieldset {
 /* Футер
    ========================================================================== */
 
+.promo__title {
+	margin: 0;
+	padding: 0;
+}
+
 .footer {
-	margin-top: 30px;
 	padding-top: 30px;
+	padding-bottom: 30px;
 	border-top: solid 1px #cccccc;
 
 	display: -webkit-box;
@@ -691,7 +700,7 @@ fieldset {
 	align-items: flex-start;
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .copyright {
@@ -724,7 +733,7 @@ fieldset {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-
+	align-items: center;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -965,6 +974,10 @@ fieldset {
 	color: #ffffff;
 	font-size: 50px;
 	font-weight: 700;
+}
+
+.contacts p {
+	margin: 0;
 }
 
 .success__message::before,
