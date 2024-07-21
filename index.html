@@ -20,15 +20,7 @@
 	<body>
 		<main>
 			<div class="promo">
-				<h1 class="promo__title visually-hidden">
-					Keksobooking. Кексы по соседству
-				</h1>
-				<img
-					src="img/keksobooking.svg"
-					alt="Keksobooking. Кексы по соседству"
-					width="215"
-					height="45"
-				/>
+				<h1 class="promo__title visually-hidden">Арнеда жилья</h1>
 			</div>
 
 			<!-- Карта объявлений -->
@@ -173,7 +165,13 @@
 								/>
 							</div>
 							<div class="ad-form__field">
-								<input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden" accept="image/png, image/jpeg, image/jpg"> 
+								<input
+									type="file"
+									id="avatar"
+									name="avatar"
+									class="ad-form-header__input visually-hidden"
+									accept="image/png, image/jpeg, image/jpg"
+								/>
 								<label class="ad-form-header__drop-zone" for="avatar"
 									>Загрузить<br />фото...</label
 								>
@@ -355,15 +353,24 @@
 						<label class="ad-form__label">Фотография жилья</label>
 						<div class="ad-form__photo-container">
 							<div class="ad-form__upload">
-                <input
-                  type="file"
-                  id="images"
-                  name="images"
-                  class="ad-form__input visually-hidden"
-                  accept="image/png, image/jpeg" />
-                <label for="images" class="ad-form__drop-zone">Загрузить<br />фото...</label>
-              </div>
-              <img class="ad-form__photo" src="img/muffin-white.svg" width="70" height="70" alt="">
+								<input
+									type="file"
+									id="images"
+									name="images"
+									class="ad-form__input visually-hidden"
+									accept="image/png, image/jpeg"
+								/>
+								<label for="images" class="ad-form__drop-zone"
+									>Загрузить<br />фото...</label
+								>
+							</div>
+							<img
+								class="ad-form__photo"
+								src="img/muffin-white.svg"
+								width="70"
+								height="70"
+								alt=""
+							/>
 						</div>
 					</fieldset>
 					<fieldset class="ad-form__element ad-form__element--submit">
@@ -376,25 +383,6 @@
 
 		<footer class="footer container">
 			<div class="footer__copyright copyright">
-				<a
-					class="copyright__link copyright__link--image"
-					href="https://htmlacademy.ru/intensive/javascript"
-				>
-					<img
-						src="img/htmla-logo.svg"
-						width="130"
-						height="45"
-						alt="HTML Academy"
-						class="copyright__logo"
-					/>
-				</a>
-				<p>
-					Сделано в
-					<a
-						class="copyright__link copyright__link--text"
-						href="https://htmlacademy.ru/intensive/javascript"
-						>HTMLAcademy</a
-					>
 				</p>
 			</div>
 			<ul class="footer__contacts contacts">
@@ -463,7 +451,10 @@
 		<!-- Сообщение об успешном создании объявления -->
 		<template id="success">
 			<div class="success">
-				<p class="success__message">Ваше объявление<br /> успешно размещено!</p>
+				<p class="success__message">
+					Ваше объявление<br />
+					успешно размещено!
+				</p>
 			</div>
 		</template>
 
